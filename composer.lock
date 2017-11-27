@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b26a83e74a0027cc1432ebf74564fba",
+    "content-hash": "316d65f5b6b2b1974ac04bd9256f5af0",
     "packages": [
         {
             "name": "aura/intl",
@@ -54,16 +54,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.36.23",
+            "version": "3.36.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "755ff10ad2ea4ebb04b4e2b150a4a4fb13a22060"
+                "reference": "c7a93ab8a4aff2915f4dd1545c99f9f59e13bafd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/755ff10ad2ea4ebb04b4e2b150a4a4fb13a22060",
-                "reference": "755ff10ad2ea4ebb04b4e2b150a4a4fb13a22060",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c7a93ab8a4aff2915f4dd1545c99f9f59e13bafd",
+                "reference": "c7a93ab8a4aff2915f4dd1545c99f9f59e13bafd",
                 "shasum": ""
             },
             "require": {
@@ -130,20 +130,20 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-10-06T22:26:58+00:00"
+            "time": "2017-10-11T19:12:01+00:00"
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.4.13",
+            "version": "3.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "f9cd66fe071d1cfb2fa6aec94ee37a7fd0916c03"
+                "reference": "cdf66608ef1f64e26509c41e92cc9bdb558c81fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/f9cd66fe071d1cfb2fa6aec94ee37a7fd0916c03",
-                "reference": "f9cd66fe071d1cfb2fa6aec94ee37a7fd0916c03",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/cdf66608ef1f64e26509c41e92cc9bdb558c81fd",
+                "reference": "cdf66608ef1f64e26509c41e92cc9bdb558c81fd",
                 "shasum": ""
             },
             "require": {
@@ -216,7 +216,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2017-08-17T03:06:44+00:00"
+            "time": "2017-09-27T01:53:08+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -2058,21 +2058,21 @@
     "packages-dev": [
         {
             "name": "cakephp/bake",
-            "version": "1.3.7",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "4bbb541ee27d12fe63f15cf5acf70b94553de209"
+                "reference": "952f1d4f6d96fe7834a0f9eb39b2bd207ed6629f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/4bbb541ee27d12fe63f15cf5acf70b94553de209",
-                "reference": "4bbb541ee27d12fe63f15cf5acf70b94553de209",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/952f1d4f6d96fe7834a0f9eb39b2bd207ed6629f",
+                "reference": "952f1d4f6d96fe7834a0f9eb39b2bd207ed6629f",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": ">=3.4.0 <4.0.0",
-                "cakephp/plugin-installer": "*",
+                "cakephp/cakephp": ">=3.5.0,<4.0.0",
+                "cakephp/plugin-installer": "~1.0",
                 "php": ">=5.6.0"
             },
             "require-dev": {
@@ -2095,13 +2095,13 @@
                     "homepage": "https://github.com/cakephp/bake/graphs/contributors"
                 }
             ],
-            "description": "Bake plugin for CakePHP 3.0",
+            "description": "Bake plugin for CakePHP 3",
             "homepage": "https://github.com/cakephp/bake",
             "keywords": [
                 "bake",
                 "cakephp"
             ],
-            "time": "2017-07-01T15:59:12+00:00"
+            "time": "2017-09-15T12:24:02+00:00"
         },
         {
             "name": "cakephp/cakephp-codesniffer",
@@ -3095,16 +3095,16 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.2.4",
+            "version": "5.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "7ccb0e67ea8ace0f84c40900ca3c8a234467628c"
+                "reference": "0d4fda8efdf216ade084a7f0aad5637572ce9835"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/7ccb0e67ea8ace0f84c40900ca3c8a234467628c",
-                "reference": "7ccb0e67ea8ace0f84c40900ca3c8a234467628c",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/0d4fda8efdf216ade084a7f0aad5637572ce9835",
+                "reference": "0d4fda8efdf216ade084a7f0aad5637572ce9835",
                 "shasum": ""
             },
             "require": {
@@ -3157,7 +3157,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-10-04T20:57:36+00:00"
+            "time": "2017-10-10T13:22:37+00:00"
         },
         {
             "name": "k1low/po",
