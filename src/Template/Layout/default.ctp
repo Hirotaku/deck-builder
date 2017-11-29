@@ -26,8 +26,38 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <!-- Bootstrap core CSS     -->
+    <?= $this->Html->css('bootstrap.min.css') ?>
+
+    <!-- Animation library for notifications   -->
+    <?= $this->Html->css('animate.min.css') ?>
+
+    <!--  Paper Dashboard core CSS    -->
+    <?= $this->Html->css('paper-dashboard.css') ?>
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <?= $this->Html->css('themify-icons.css') ?>
+
+
+
+     <!--   Core JS Files   -->
+    <?= $this->Html->script('jquery-1.10.2.js'); ?>
+    <?= $this->Html->script('bootstrap.min.js'); ?>
+
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <?= $this->Html->script('bootstrap-checkbox-radio.js'); ?>
+
+    <!--  Charts Plugin -->
+    <?= $this->Html->script('chartist.min.js'); ?>
+
+    <!--  Notifications Plugin    -->
+    <?= $this->Html->script('bootstrap-notify.js'); ?>
+
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+    <?= $this->Html->script('paper-dashboard.js'); ?>
+
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
