@@ -6,7 +6,7 @@
     "license": "cubex",
     "require": {
         "php": "7.0.*",
-        "cakephp/cakephp": "~3.4.2",
+        "cakephp/cakephp": "3.*",
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
         "friendsofcake/search": "*",

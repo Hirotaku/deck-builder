@@ -26,32 +26,62 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <!-- Bootstrap core CSS     -->
+    <?= $this->Html->css('bootstrap.min.css') ?>
+
+    <!-- Animation library for notifications   -->
+    <?= $this->Html->css('animate.min.css') ?>
+
+    <!--  Paper Dashboard core CSS    -->
+    <?= $this->Html->css('paper-dashboard.css') ?>
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <?= $this->Html->css('themify-icons.css') ?>
+
+
+
+     <!--   Core JS Files   -->
+    <?= $this->Html->script('jquery-1.10.2.js'); ?>
+    <?= $this->Html->script('bootstrap.min.js'); ?>
+
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <?= $this->Html->script('bootstrap-checkbox-radio.js'); ?>
+
+    <!--  Charts Plugin -->
+    <?= $this->Html->script('chartist.min.js'); ?>
+
+    <!--  Notifications Plugin    -->
+    <?= $this->Html->script('bootstrap-notify.js'); ?>
+
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+    <?= $this->Html->script('paper-dashboard.js'); ?>
+
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
-    </nav>
+<div class="wrapper">
+  <div class="sidebar" data-background-color="white" data-active-color="danger">
+    <?= $this->element('global_sideber') ?>
+  </div>
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
+    <div class="main-panel">
+        <?= $this->element('global_header') ?>
+        <div class="content">
+          <div class="container-fluid">
+          <?= $this->fetch('content') ?>
+          </div>
+        </div>
+        <footer class="footer">
+            <?= $this->element('global_footer') ?>
+        </footer>
     </div>
-    <footer>
-    </footer>
+
+</div>
+
 </body>
 </html>
