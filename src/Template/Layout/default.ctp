@@ -71,7 +71,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Flash->render() ?>
     <div class="main-panel">
         <?= $this->element('global_header') ?>
-        <?= $this->fetch('content') ?>
+        <div class="content">
+          <div class="container-fluid">
+          <?= $this->fetch('content') ?>
+          </div>
+        </div>
         <footer class="footer">
             <?= $this->element('global_footer') ?>
         </footer>
