@@ -1,22 +1,42 @@
 # カード
 create_table "cards", force: :true do |t|
   t.text   "name",             comment:""
-  t.text   "multiverseid",             comment:""
-  t.text   "layout",             comment:""
-  t.text   "names",             comment:""
-  t.text   "manaCost",             comment:""
+  t.text   "en_name",             comment:""
+  t.text   "manacost",             comment:""
   t.text   "cmc",             comment:""
+  t.text   "colors",             comment:""
+  t.text   "color_identity",             comment:""
   t.text   "type",             comment:""
   t.text   "supertypes",             comment:""
+  t.text   "types",             comment:""
   t.text   "subtypes",             comment:""
   t.text   "rarity",             comment:""
+  t.text   "set",             comment:""
+  t.text   "setname",             comment:""
   t.text   "text",             comment:""
   t.text   "flavor",             comment:""
   t.text   "artist",             comment:""
   t.text   "number",             comment:""
   t.text   "power",             comment:""
   t.text   "toughness",             comment:""
+  t.text   "layout",             comment:""
+  t.text   "multiverseid",             comment:""
+  t.text   "en_image_url",             comment:""
   t.text   "loyalty",             comment:""
+  t.text   "image_url",             comment:""
+  t.text   "jp_multiverseid",             comment:""
+  t.text   "printings",             comment:""
+  t.text   "original_text",             comment:""
+  t.text   "original_type",             comment:""
+  t.text   "commander",             comment:""
+  t.text   "block",             comment:""
+  t.text   "legacy",             comment:""
+  t.text   "standard",             comment:""
+  t.text   "vintage",             comment:""
+  t.text   "api_id",             comment:"もとはid表記"
+
+
+  t.text   "names",             comment:""
   t.text   "variations",             comment:""
   t.text   "watermark",             comment:""
   t.text   "border",             comment:""
@@ -24,40 +44,44 @@ create_table "cards", force: :true do |t|
   t.text   "hand",             comment:""
   t.text   "life",             comment:""
   t.text   "reserved",             comment:""
-  t.text   "releaseDate",             comment:""
+  t.text   "release_date",             comment:""
   t.text   "starter",             comment:""
-  t.text   "rulings",             comment:""
-  t.text   "foreignNames",             comment:""
-  t.text   "printings",             comment:""
-  t.text   "originalText",             comment:""
-  t.text   "originalType",             comment:""
-  t.text   "legalities",             comment:""
   t.text   "source",             comment:""
-  t.text   "imageUrl",             comment:""
-  t.text   "set",             comment:""
-  t.text   "setName",             comment:""
-  t.text   "cardId",             comment:"もとはid表記"
 
   t.datetime "deleted",                         comment:"削除フラグ"
   t.datetime "created",                         comment:"登録日時"
   t.datetime "modified",                        comment:"更新日時"
 end
 
+add_index :cards, :name
+add_index :cards, :manacost
+add_index :cards, :cmc
+add_index :cards, :color_identity
+add_index :cards, :rarity
+add_index :cards, :set
+add_index :cards, :power
+add_index :cards, :toughness
+add_index :cards, :commander
+add_index :cards, :block
+add_index :cards, :legacy
+add_index :cards, :standard
+add_index :cards, :vintage
+
 # セット
 create_table "sets", force: :true do |t|
   t.text   "code",                             comment:""
   t.text   "name",                             comment:""
-  t.text   "gatherCode",                             comment:""
-  t.text   "oldCode",                             comment:""
-  t.text   "magicCardsInfoCode",                    comment:""
-  t.text   "releaseDate",                             comment:""
+  t.text   "gather_code",                             comment:""
+  t.text   "old_code",                             comment:""
+  t.text   "magic_cards_info_code",                    comment:""
+  t.text   "release_date",                             comment:""
   t.text   "border",                             comment:""
   t.text   "type",                             comment:""
   t.text   "block",                             comment:""
-  t.text   "onlineOnly",                             comment:""
+  t.text   "online_only",                             comment:""
   t.text   "booster",                             comment:""
-  t.text   "mkmId",                             comment:""
-  t.text   "mkmName",                             comment:""
+  t.text   "mkm_id",                             comment:""
+  t.text   "mkm_name",                             comment:""
 
   t.datetime "deleted",                         comment:"削除フラグ"
   t.datetime "created",                         comment:"登録日時"
