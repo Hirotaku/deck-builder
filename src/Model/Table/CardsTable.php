@@ -43,6 +43,7 @@ class CardsTable extends Table
         $this->hasMany('DeckCards', [
             'foreignKey' => 'card_id'
         ]);
+        $this->addBehavior('Search.Search');
     }
 
     /**
@@ -206,6 +207,29 @@ class CardsTable extends Table
             ->allowEmpty('cardId');
 
         return $validator;
+    }
+
+    /**
+     * @return \Search\Manager
+     */
+    public function searchManager()
+    {
+        $searchManager = $this->behaviors()->Search->searchManager();
+        $searchManager
+            ->like('name', [
+                'before' => true,
+                'after' => true,
+            ])
+            ->value('cmc')
+            ->like('color_identity')
+            ->like('type')
+            ->value('rarity')
+            ->like('text')
+            ->value('power')
+            ->value('toughness');
+
+
+        return $searchManager;
     }
 
     /**

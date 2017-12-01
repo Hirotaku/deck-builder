@@ -11,7 +11,7 @@
   <div class="col-lg-6 col-sm-6">
     <div class="card">
       <div class="content">
-        <a href="<?= $this->Url->build(['controller' => 'Decks', 'action' => 'build', $deck->id]); ?>">
+        <a href="<?= $this->Url->build(['controller' => 'DeckCards', 'action' => 'index', $deck->id]); ?>">
         <div class="row">
           <div class="col-md-6 col-xs-7">
               <h4>

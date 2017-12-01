@@ -28,9 +28,9 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="<?= $this->Url->build(['controller' => 'users', 'action' => 'logout']); ?>">
                         <i class="ti-settings"></i>
-                        <p>Login User</p>
+                        <p>Logout</p>
                     </a>
                 </li>
             </ul>

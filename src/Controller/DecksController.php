@@ -16,31 +16,19 @@ class DecksController extends AppController
     /**
      * Index method
      *
+     * @param int $userId
      * @return \Cake\Http\Response|void
      */
-    public function index()
+    public function index($userId)
     {
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
-        $decks = $this->paginate($this->Decks);
+        $query = $this->Decks->find()
+            ->where(['user_id' => $userId])
+            ->order(['modified' => 'DESC']);
+        $decks = $this->paginate($query, ['limit' => 5]);
 
         $this->set(compact('decks'));
         $this->set('_serialize', ['decks']);
     }
-
-    /**
-     * build method
-     *
-     * @param int $deckId
-     * @return \Cake\Http\Response|void
-     */
-    public function build($deckId)
-    {
-
-    }
-
-
 
     /**
      * View method

@@ -12,18 +12,47 @@ use App\Controller\AppController;
  */
 class CardsController extends AppController
 {
+    /**
+     * initialize
+     *
+     * @author hagiwara
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadComponent('Search.Prg', [
+            'actions' => ['searchIndex']
+        ]);
+    }
+
 
     /**
-     * Index method
+     * searchIndex method
+     * カード検索画面
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
+    public function searchIndex()
     {
-        $cards = $this->paginate($this->Cards);
+        if (!empty($this->request->getQuery())) {
+            $query = $this->Cards->find('search', ['search' => $this->request->getQuery()]);
+            $this->set('cards', $this->paginate($query));
+            $this->render('list');
+        }
+    }
 
-        $this->set(compact('cards'));
-        $this->set('_serialize', ['cards']);
+    /**
+     * searchIndex method
+     * カード検索画面
+     *
+     * @param array $searchQuery
+     * @return \Cake\Http\Response|void
+     */
+    public function list($searchQuery)
+    {
+
     }
 
     /**
