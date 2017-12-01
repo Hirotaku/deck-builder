@@ -62,6 +62,14 @@ class UsersTable extends Table
             ->allowEmpty('name');
 
         $validator
+            ->scalar('loginid')
+            ->allowEmpty('loginid');
+
+        $validator
+            ->scalar('password')
+            ->allowEmpty('password');
+
+        $validator
             ->dateTime('deleted')
             ->allowEmpty('deleted');
 

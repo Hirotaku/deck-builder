@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -11,6 +12,57 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    /**
+     * initialize
+     *
+     * @author hagiwara
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['add', 'edit']);
+    }
+    /**
+     * beforeFilter
+     *
+     * @author hagiwara
+     * @param \Cake\Event\Event $event
+     * @return void
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+    }
+    /**
+     * login
+     *
+     * @author hagiwara
+     * @return void|\Cake\Network\Response
+     */
+    public function login()
+    {
+        $this->viewBuilder()->layout('default');
+
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect(['controller' => 'Users', 'action' => 'index']);
+            }
+            $this->Flash->error(__('Invalid credentials, try again'));
+        }
+    }
+    /**
+     * logout
+     *
+     * @author hagiwara
+     * @return null|\Cake\Network\Response
+     */
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
 
     /**
      * Index method
