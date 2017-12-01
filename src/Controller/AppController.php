@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use App\Statics\UserInfo;
 
 /**
  * Application Controller
@@ -27,14 +28,10 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
-
     /**
-     * Initialization hook method.
+     * initialize
      *
-     * Use this method to add common initialization code like loading components.
-     *
-     * e.g. `$this->loadComponent('Security');`
-     *
+     * @author hagiwara
      * @return void
      */
     public function initialize()
@@ -44,12 +41,51 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 
-        /*
-         * Enable the following components for recommended CakePHP security settings.
-         * see https://book.cakephp.org/3.0/en/controllers/components/security.html
-         */
-        //$this->loadComponent('Security');
-        //$this->loadComponent('Csrf');
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'userModel' => 'Users',
+                    'fields' => [
+                        'username' => 'loginid',
+                        'password' => 'password'
+                    ],
+                ]
+            ],
+            'flash' => [
+                'key' => 'flash',
+                'params' => [
+                    'class' => 'alert alert-dismissible fade in alert-danger',
+                ]
+            ],
+            'loginAction' => [
+                'controller' => 'users',
+                'action'     => 'login',
+            ],
+            'loginRedirect' => [
+                'controller' => 'users',
+                'action'     => 'index',
+            ],
+            'storage' => [
+                'className' => 'Session',
+                'key' => 'Auth.Admin'
+            ],
+            'checkAuthIn' => 'Controller.startup'
+        ]);
+        $this->loadComponent('Pack.Pack');
+    }
+
+    /**
+     * beforeFilter
+     * @param \Cake\Event\Event $event
+     * @return void
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        // ログイン情報をStaticなクラスに挿入
+        UserInfo::$user = $this->Auth->user();
+        // 後で上書きしたい場合があるのでbeforeFilterでセット
+        $this->viewBuilder()->layout('default');
     }
 
     /**

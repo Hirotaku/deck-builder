@@ -1,42 +1,42 @@
 # カード
-create_table "cards", force: :cascade do |t|
-  t.string   "name",             comment:""
-  t.string   "multiverseid",             comment:""
-  t.string   "layout",             comment:""
-  t.string   "names",             comment:""
-  t.string   "manaCost",             comment:""
-  t.string   "cmc",             comment:""
-  t.string   "type",             comment:""
-  t.string   "supertypes",             comment:""
-  t.string   "subtypes",             comment:""
-  t.string   "rarity",             comment:""
-  t.string   "text",             comment:""
-  t.string   "flavor",             comment:""
-  t.string   "artist",             comment:""
-  t.string   "number",             comment:""
-  t.string   "power",             comment:""
-  t.string   "toughness",             comment:""
-  t.string   "loyalty",             comment:""
-  t.string   "variations",             comment:""
-  t.string   "watermark",             comment:""
-  t.string   "border",             comment:""
-  t.string   "timeshifted",             comment:""
-  t.string   "hand",             comment:""
-  t.string   "life",             comment:""
-  t.string   "reserved",             comment:""
-  t.string   "releaseDate",             comment:""
-  t.string   "starter",             comment:""
-  t.string   "rulings",             comment:""
-  t.string   "foreignNames",             comment:""
-  t.string   "printings",             comment:""
-  t.string   "originalText",             comment:""
-  t.string   "originalType",             comment:""
-  t.string   "legalities",             comment:""
-  t.string   "source",             comment:""
-  t.string   "imageUrl",             comment:""
-  t.string   "set",             comment:""
-  t.string   "setName",             comment:""
-  t.string   "cardId",             comment:"もとはid表記"
+create_table "cards", force: :true do |t|
+  t.text   "name",             comment:""
+  t.text   "multiverseid",             comment:""
+  t.text   "layout",             comment:""
+  t.text   "names",             comment:""
+  t.text   "manaCost",             comment:""
+  t.text   "cmc",             comment:""
+  t.text   "type",             comment:""
+  t.text   "supertypes",             comment:""
+  t.text   "subtypes",             comment:""
+  t.text   "rarity",             comment:""
+  t.text   "text",             comment:""
+  t.text   "flavor",             comment:""
+  t.text   "artist",             comment:""
+  t.text   "number",             comment:""
+  t.text   "power",             comment:""
+  t.text   "toughness",             comment:""
+  t.text   "loyalty",             comment:""
+  t.text   "variations",             comment:""
+  t.text   "watermark",             comment:""
+  t.text   "border",             comment:""
+  t.text   "timeshifted",             comment:""
+  t.text   "hand",             comment:""
+  t.text   "life",             comment:""
+  t.text   "reserved",             comment:""
+  t.text   "releaseDate",             comment:""
+  t.text   "starter",             comment:""
+  t.text   "rulings",             comment:""
+  t.text   "foreignNames",             comment:""
+  t.text   "printings",             comment:""
+  t.text   "originalText",             comment:""
+  t.text   "originalType",             comment:""
+  t.text   "legalities",             comment:""
+  t.text   "source",             comment:""
+  t.text   "imageUrl",             comment:""
+  t.text   "set",             comment:""
+  t.text   "setName",             comment:""
+  t.text   "cardId",             comment:"もとはid表記"
 
   t.datetime "deleted",                         comment:"削除フラグ"
   t.datetime "created",                         comment:"登録日時"
@@ -44,20 +44,20 @@ create_table "cards", force: :cascade do |t|
 end
 
 # セット
-create_table "sets", force: :cascade do |t|
-  t.string   "code",                             comment:""
-  t.string   "name",                             comment:""
-  t.string   "gatherCode",                             comment:""
-  t.string   "oldCode",                             comment:""
-  t.string   "magicCardsInfoCode",                    comment:""
-  t.string   "releaseDate",                             comment:""
-  t.string   "border",                             comment:""
-  t.string   "type",                             comment:""
-  t.string   "block",                             comment:""
-  t.string   "onlineOnly",                             comment:""
-  t.string   "booster",                             comment:""
-  t.string   "mkmId",                             comment:""
-  t.string   "mkmName",                             comment:""
+create_table "sets", force: :true do |t|
+  t.text   "code",                             comment:""
+  t.text   "name",                             comment:""
+  t.text   "gatherCode",                             comment:""
+  t.text   "oldCode",                             comment:""
+  t.text   "magicCardsInfoCode",                    comment:""
+  t.text   "releaseDate",                             comment:""
+  t.text   "border",                             comment:""
+  t.text   "type",                             comment:""
+  t.text   "block",                             comment:""
+  t.text   "onlineOnly",                             comment:""
+  t.text   "booster",                             comment:""
+  t.text   "mkmId",                             comment:""
+  t.text   "mkmName",                             comment:""
 
   t.datetime "deleted",                         comment:"削除フラグ"
   t.datetime "created",                         comment:"登録日時"
@@ -65,10 +65,10 @@ create_table "sets", force: :cascade do |t|
 end
 
 # デッキ
-create_table "decks", force: :cascade do |t|
-  t.string   "name",                             comment:"名称"
+create_table "decks", force: :true do |t|
+  t.text   "name",                             comment:"名称"
   t.integer  "user_id",                     comment:"デッキid"
-  t.string   "memo",                        comment:"メモ"
+  t.text   "memo",                        comment:"メモ"
 
 
   t.datetime "deleted",                         comment:"削除フラグ"
@@ -77,10 +77,10 @@ create_table "decks", force: :cascade do |t|
 end
 
 # デッキ-カード
-create_table "deck_cards", force: :cascade do |t|
+create_table "deck_cards", force: :true do |t|
   t.integer  "deck_id",                     comment:"デッキid"
   t.integer  "card_id",                     comment:"カードid"
-  t.string   "memo",                        comment:"メモ"
+  t.text   "memo",                        comment:"メモ"
 
   t.datetime "deleted",                         comment:"削除フラグ"
   t.datetime "created",                         comment:"登録日時"
@@ -88,8 +88,10 @@ create_table "deck_cards", force: :cascade do |t|
 end
 
 # ユーザー
-create_table "users", force: :cascade do |t|
-  t.string   "name",                             comment:"名称"
+create_table "users", force: :true do |t|
+  t.text   "name",                             comment:"名称"
+  t.text   "loginid",                             comment:"ログインID"
+  t.text   "password",                             comment:"パスワード"
 
   t.datetime "deleted",                         comment:"削除フラグ"
   t.datetime "created",                         comment:"登録日時"
