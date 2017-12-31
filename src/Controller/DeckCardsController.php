@@ -69,17 +69,13 @@ class DeckCardsController extends AppController
 
         if (empty($deckCardData)) {
             //insert
-            if ($this->insert($deckId, $cardId, $board)) {
-//                return true;
-            }
+            $this->insert($deckId, $cardId, $board);
+        } else {
+            //update
+            $this->update($deckCardData);
         }
-        //update
-        if ($this->update($deckCardData)) {
-//            return true;
-        }
+
         $this->set(true,'res');
-
-
     }
 
     /**
@@ -125,20 +121,34 @@ class DeckCardsController extends AppController
     /**
      * Delete method
      *
-     * @param string|null $id Deck Card id.
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete()
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $deckCard = $this->DeckCards->get($id);
-        if ($this->DeckCards->delete($deckCard)) {
-            $this->Flash->success(__('The deck card has been deleted.'));
+        $deckId = $this->request->getData('deckId');
+        $cardId = $this->request->getData('cardId');
+        $board = $this->request->getData('board');
+
+        //レコードがあればupdate, なければinsert
+        $deckCardData = $this->DeckCards->find()
+            ->where([
+                'deck_id' => $deckId,
+                'card_id' => $cardId,
+                'board' => $board
+            ])
+            ->first();
+
+        $deckCardData->count = $deckCardData->count - 1;
+        if ($deckCardData->count == 0) {
+            //枚数が0になったらレコードを削除
+            $this->DeckCards->delete($deckCardData);
         } else {
-            $this->Flash->error(__('The deck card could not be deleted. Please, try again.'));
+            //枚数を減らす
+            $this->DeckCards->save($deckCardData);
         }
 
-        return $this->redirect(['action' => 'index']);
+        $this->set(true,'res');
     }
+
 }
