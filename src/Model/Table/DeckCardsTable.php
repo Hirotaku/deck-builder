@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Consts\DeckCardConsts;
 
 /**
  * DeckCards Model
@@ -85,5 +86,43 @@ class DeckCardsTable extends Table
         $rules->add($rules->existsIn(['card_id'], 'Cards'));
 
         return $rules;
+    }
+
+    /**
+     * getCounts
+     * カード詳細画面にて
+     * そのデッキに含まれているメイン、サイドの枚数を取得
+     *
+     * @param int $deckId
+     * @param int $cardId
+     * @return object
+     */
+    public function getCounts($deckId, $cardId)
+    {
+        $deckCards = $this->find()
+            ->where([
+                'deck_id' => $deckId,
+                'card_id' => $cardId
+            ])
+            ->all();
+
+        $counts = $this->newEntity();
+        $counts->main_counts = 0;
+        $counts->side_counts = 0;
+        if ($deckCards->isEmpty()) {
+            return $counts;
+        }
+
+        foreach ($deckCards as $deckCard) {
+            if ($deckCard->board == DeckCardConsts::MAIN_BOARD_ID) {
+                $counts->main_counts = $deckCard->count;
+
+            } elseif ($deckCard->board == DeckCardConsts::MAIN_BOARD_ID) {
+                $counts->side_counts = $deckCard->count;
+
+            }
+        }
+
+        return $counts;
     }
 }

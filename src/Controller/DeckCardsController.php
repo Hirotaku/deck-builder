@@ -2,11 +2,13 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\Table\DeckCardsTable;
+use App\Consts\DeckCardConsts;
 
 /**
  * DeckCards Controller
  *
- *
+ * @property DeckCardsTable $DeckCards
  * @method \App\Model\Entity\DeckCard[] paginate($object = null, array $settings = [])
  */
 class DeckCardsController extends AppController
@@ -17,11 +19,11 @@ class DeckCardsController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
+    public function index($deckId)
     {
         $deckCards = $this->paginate($this->DeckCards);
 
-        $this->set(compact('deckCards'));
+        $this->set(compact('deckCards', 'deckId'));
         $this->set('_serialize', ['deckCards']);
     }
 
@@ -45,47 +47,79 @@ class DeckCardsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     * @param int $deckId
+     * @param int $cardId
+     * @param int $board
+     * @return boolean
      */
     public function add()
     {
-        $deckCard = $this->DeckCards->newEntity();
-        if ($this->request->is('post')) {
-            $deckCard = $this->DeckCards->patchEntity($deckCard, $this->request->getData());
-            if ($this->DeckCards->save($deckCard)) {
-                $this->Flash->success(__('The deck card has been saved.'));
+        $deckId = $this->request->getData('deckId');
+        $cardId = $this->request->getData('cardId');
+        $board = $this->request->getData('board');
 
-                return $this->redirect(['action' => 'index']);
+        //レコードがあればupdate, なければinsert
+        $deckCardData = $this->DeckCards->find()
+            ->where([
+                'deck_id' => $deckId,
+                'card_id' => $cardId,
+                'board' => $board
+            ])
+            ->first();
+
+        if (empty($deckCardData)) {
+            //insert
+            if ($this->insert($deckId, $cardId, $board)) {
+//                return true;
             }
-            $this->Flash->error(__('The deck card could not be saved. Please, try again.'));
         }
-        $this->set(compact('deckCard'));
-        $this->set('_serialize', ['deckCard']);
+        //update
+        if ($this->update($deckCardData)) {
+//            return true;
+        }
+        $this->set(true,'res');
+
+
     }
 
     /**
-     * Edit method
+     * insert
      *
-     * @param string|null $id Deck Card id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     * @param int $deckId
+     * @param int $cardId
+     * @param int $board
+     * @return boolean
      */
-    public function edit($id = null)
+    public function insert($deckId, $cardId, $board)
     {
-        $deckCard = $this->DeckCards->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $deckCard = $this->DeckCards->patchEntity($deckCard, $this->request->getData());
-            if ($this->DeckCards->save($deckCard)) {
-                $this->Flash->success(__('The deck card has been saved.'));
+        $deckCard = $this->DeckCards->newEntity();
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The deck card could not be saved. Please, try again.'));
+        $deckCard->deck_id = $deckId;
+        $deckCard->card_id = $cardId;
+        $deckCard->board = $board;
+        $deckCard->count = 1;
+        if ($this->DeckCards->save($deckCard)) {
+            return true;
         }
-        $this->set(compact('deckCard'));
-        $this->set('_serialize', ['deckCard']);
+        return false;
+
+
+    }
+
+    /**
+     * update
+     *
+     * @param object
+     * @return boolean
+     */
+    public function update($deckCardData)
+    {
+        $deckCardData->count = $deckCardData->count + 1;
+
+        if ($this->DeckCards->save($deckCardData)) {
+            return true;
+        }
+        return false;
     }
 
     /**

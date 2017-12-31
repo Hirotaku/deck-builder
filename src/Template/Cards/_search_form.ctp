@@ -61,6 +61,6 @@
   </div>
 </div>
 <div class="text-center">
-    <?= $this->Form->button(__('登録'), ['class' => 'btn btn-info btn-fill btn-wd', 'name' => 'search']) ?>
+    <?= $this->Form->button(__('検索'), ['class' => 'btn btn-info btn-fill btn-wd', 'name' => 'search']) ?>
 </div>
 <div class="clearfix"></div>

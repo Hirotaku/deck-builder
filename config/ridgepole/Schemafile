@@ -105,6 +105,9 @@ create_table "deck_cards", force: :true do |t|
   t.integer  "deck_id",                     comment:"デッキid"
   t.integer  "card_id",                     comment:"カードid"
   t.text   "memo",                        comment:"メモ"
+  t.integer   "board",                        comment:"メイン・サイドフラグ"
+  t.integer   "count",                        comment:"メモ"
+
 
   t.datetime "deleted",                         comment:"削除フラグ"
   t.datetime "created",                         comment:"登録日時"

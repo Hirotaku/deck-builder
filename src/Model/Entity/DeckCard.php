@@ -9,6 +9,8 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $deck_id
  * @property int $card_id
+ * @property int $board
+ * @property int $count
  * @property string $memo
  * @property \Cake\I18n\FrozenTime $deleted
  * @property \Cake\I18n\FrozenTime $created
@@ -30,13 +32,6 @@ class DeckCard extends Entity
      * @var array
      */
     protected $_accessible = [
-        'deck_id' => true,
-        'card_id' => true,
-        'memo' => true,
-        'deleted' => true,
-        'created' => true,
-        'modified' => true,
-        'deck' => true,
-        'card' => true
+        '*' => true,
     ];
 }

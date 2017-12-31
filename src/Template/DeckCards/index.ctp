@@ -1,7 +1,7 @@
 <h3>Card Lists</h3>
 <div class="row">
   <div class="col-xs-4">
-      <?= $this->Html->link(__('Search Cards'), ['controller' => 'Cards', 'action' => 'searchIndex'], ['class' => 'btn btn-sm btn-warning']) ?>
+      <?= $this->Html->link(__('Search Cards'), ['controller' => 'Cards', 'action' => 'searchIndex', $deckId], ['class' => 'btn btn-sm btn-warning']) ?>
   </div>
   <div class="col-xs-4">
       <?= $this->Html->link(__('New Deck'), ['controller' => 'Decks', 'action' => 'add'], ['class' => 'btn btn-sm btn-warning']) ?>

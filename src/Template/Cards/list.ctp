@@ -11,7 +11,7 @@
   <div class="col-lg-6 col-xs-6">
     <div class="card">
       <div class="content">
-        <a href="<?= $this->Url->build(['controller' => 'Cards', 'action' => 'view', $card->id]); ?>">
+        <a href="<?= $this->Url->build(['controller' => 'Cards', 'action' => 'view', $deckId, $card->id]); ?>">
         <div class="row">
           <div class="col-xs-offset-3 col-xs-6">
             <img src="<?= $card->image_url?>" width="100%">

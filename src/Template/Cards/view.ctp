@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-xs-8">
-    <h4><?= $card->name ?></h4>
+    <h4 class="">
+        <?= $card->name?><br>
+    </h4>
   </div>
 </div>
 <div class="row">
@@ -12,29 +14,44 @@
                   <img src="<?= $card->image_url?>" width="100%">
                 </div>
               </div>
-              <div class="footer">
-                <hr />
-                <div class="stats">
-                  <div class="row">
-                    <div class="col-xs-3">
-                      <p><?= __('main') ?></p>
-                    </div>
-                    <div class="col-xs-3">
-                      <?= $this->Html->link(__('+'), ['class' => 'btn']) ?>
-                      <?= $this->Html->link(__('-'), ['controller' => 'Teams', 'action' => 'index']) ?>
-                    </div>
-                    <div class="col-xs-3">
-                      <p><?= __('sideboard') ?></p>
-                    </div>
-                    <div class="col-xs-3">
-                      <p><?= __('main') ?></p>
-                    </div>
-
-                  </div>
+              <hr />
+              <div class="row">
+                <div class="col-xs-4">
+                  <p><?= __('main') ?></p>
+                </div>
+                <div class="col-xs-2">
+                  <?= $this->Form->button(__('+'), ['class' => 'btn btn-sm btn-default main-add']) ?>
+                </div>
+                <div class="col-xs-2">
+                  <?= $this->Form->button(__('-'), ['class' => 'btn btn-sm btn-default main-delete']) ?>
+                </div>
+                <div class="col-xs-2">
+                  <?= $this->Form->input('main_count', [
+                      'class' => 'card-count',
+                      'id' => 'main-count',
+                      'type' => 'text',
+                      'disabled' => true, 'label' => false,
+                      'value' => $counts->main_counts
+                  ]); ?>
                 </div>
               </div>
+
+              <div class="row">
+                <div class="col-xs-3">
+                  <p><?= __('sideboard') ?></p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-3">
+                  <p><?= __('main') ?></p>
+                </div>
+
+              </div>
+
           </div>
         </div>
       </div>
 </div>
 
+<?= $this->Html->script('add_deck_cards.js'); ?>

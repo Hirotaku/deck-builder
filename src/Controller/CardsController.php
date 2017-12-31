@@ -7,6 +7,7 @@ use App\Controller\AppController;
  * Cards Controller
  *
  * @property \App\Model\Table\CardsTable $Cards
+ * @property \App\Model\Table\DeckCardsTable $DeckCards
  *
  * @method \App\Model\Entity\Card[] paginate($object = null, array $settings = [])
  */
@@ -25,6 +26,7 @@ class CardsController extends AppController
         $this->loadComponent('Search.Prg', [
             'actions' => ['searchIndex']
         ]);
+        $this->loadModel('DeckCards');
     }
 
 
@@ -34,8 +36,9 @@ class CardsController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function searchIndex()
+    public function searchIndex($deckId)
     {
+        $this->set(compact('deckId'));
         if (!empty($this->request->getQuery())) {
             $query = $this->Cards->find('search', ['search' => $this->request->getQuery()]);
             $this->set('cards', $this->paginate($query));
@@ -52,23 +55,25 @@ class CardsController extends AppController
      */
     public function list($searchQuery)
     {
-
     }
 
     /**
      * View method
      *
-     * @param string|null $id Card id.
+     * @param int $deckId
+     * @param int $cardId
      * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($deckId, $cardId)
     {
-        $card = $this->Cards->get($id, [
+        $card = $this->Cards->get($cardId, [
             'contain' => ['DeckCards']
         ]);
 
-        $this->set('card', $card);
+        $counts = $this->DeckCards->getCounts($deckId, $cardId);
+
+        $this->Pack->set(compact('deckId', 'cardId'));
+        $this->set(compact('card', 'counts'));
         $this->set('_serialize', ['card']);
     }
 
