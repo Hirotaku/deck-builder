@@ -55,8 +55,9 @@
 </div>
 <div class="row">
   <div class="col-xs-2 col-xs-offset-4">
-      <?= $this->Html->link(__('戻る'), ['controller' => 'Cards', 'action' => 'search-index', '?' => $this->request->getQueryParams()], ['class' => 'btn btn-sm btn-default']) ?>
+    <a class="btn" href="#" onclick="javascript:window.history.back(-1);return false;">戻る</a>
   </div>
 </div>
+
 
 <?= $this->Html->script('add_deck_cards.js'); ?>
