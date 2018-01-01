@@ -16,7 +16,7 @@ class CardsController extends AppController
     /**
      * initialize
      *
-     * @author hagiwara
+     * @author hirosawa
      * @return void
      */
     public function initialize()

@@ -125,4 +125,63 @@ class DeckCardsTable extends Table
 
         return $counts;
     }
+
+    /**
+     * getMainDeckCreatures
+     * メインデッキのクリーチャーカード
+     *
+     * @param int $deckId
+     * @return object
+     */
+    public function getMainDeckCreatures($deckId)
+    {
+        return $this->find()
+            ->where([
+                'DeckCards.deck_id' => $deckId,
+                'DeckCards.board' => DeckCardConsts::MAIN_BOARD_ID,
+                'Cards.types' => 'Creature'
+            ])
+            ->contain(['Cards'])
+            ->order(['Cards.cmc' => 'ASC'])
+            ->all();
+    }
+
+    /**
+     * getMainDeckSpells
+     * メインデッキのクリーチャーカード
+     *
+     * @param int $deckId
+     * @return object
+     */
+    public function getMainDeckSpells($deckId)
+    {
+        return $this->find()
+            ->where([
+                'DeckCards.deck_id' => $deckId,
+                'DeckCards.board' => DeckCardConsts::MAIN_BOARD_ID,
+                'Cards.types NOT IN' => ['Creature', 'Lands']
+            ])
+            ->contain(['Cards'])
+            ->order(['Cards.cmc' => 'ASC'])
+            ->all();
+    }
+
+    /**
+     * getMainDeckSpells
+     * サイドボード
+     *
+     * @param int $deckId
+     * @return object
+     */
+    public function getSideBoards($deckId)
+    {
+        return $this->find()
+            ->where([
+                'DeckCards.deck_id' => $deckId,
+                'DeckCards.board' => DeckCardConsts::SIDE_BOARD_ID,
+            ])
+            ->contain(['Cards'])
+            ->order(['Cards.cmc' => 'ASC'])
+            ->all();
+    }
 }

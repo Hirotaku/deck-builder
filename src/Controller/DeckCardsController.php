@@ -4,15 +4,29 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Model\Table\DeckCardsTable;
 use App\Consts\DeckCardConsts;
+use App\Model\Table\DecksTable;
 
 /**
  * DeckCards Controller
  *
  * @property DeckCardsTable $DeckCards
+ * @property DecksTable $Decks
  * @method \App\Model\Entity\DeckCard[] paginate($object = null, array $settings = [])
  */
 class DeckCardsController extends AppController
 {
+    /**
+     * initialize
+     *
+     * @author hirosawa
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadModel('Decks');
+    }
 
     /**
      * Index method
@@ -21,9 +35,13 @@ class DeckCardsController extends AppController
      */
     public function index($deckId)
     {
-        $deckCards = $this->paginate($this->DeckCards);
+        $deck = $this->Decks->get($deckId);
 
-        $this->set(compact('deckCards', 'deckId'));
+        $mainDeckCreatures = $this->DeckCards->getMainDeckCreatures($deckId);
+        $mainDeckSpells = $this->DeckCards->getMainDeckSpells($deckId);
+        $sideBoards = $this->DeckCards->getSideBoards($deckId);
+
+        $this->set(compact('deck', 'mainDeckCreatures', 'mainDeckSpells', 'sideBoards'));
         $this->set('_serialize', ['deckCards']);
     }
 

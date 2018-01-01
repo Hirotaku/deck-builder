@@ -6,3 +6,9 @@
   width: 30px;
   text-align: center;
 }
+
+.deck-list-row {
+  border-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #c0c2c5;
+}
