@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Statics\UserInfo;
 
 /**
  * Decks Controller
@@ -19,10 +20,10 @@ class DecksController extends AppController
      * @param int $userId
      * @return \Cake\Http\Response|void
      */
-    public function index($userId)
+    public function index()
     {
         $query = $this->Decks->find()
-            ->where(['user_id' => $userId])
+            ->where(['user_id' => UserInfo::$user['id']])
             ->order(['modified' => 'DESC']);
         $decks = $this->paginate($query, ['limit' => 5]);
 

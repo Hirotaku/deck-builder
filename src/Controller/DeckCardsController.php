@@ -39,9 +39,14 @@ class DeckCardsController extends AppController
 
         $mainDeckCreatures = $this->DeckCards->getMainDeckCreatures($deckId);
         $mainDeckSpells = $this->DeckCards->getMainDeckSpells($deckId);
+        $mainDeckLands = $this->DeckCards->getMainDeckLands($deckId);
+
         $sideBoards = $this->DeckCards->getSideBoards($deckId);
 
-        $this->set(compact('deck', 'mainDeckCreatures', 'mainDeckSpells', 'sideBoards'));
+        $this->set(compact(
+            'deck', 'mainDeckCreatures',
+            'mainDeckSpells', 'mainDeckLands', 'sideBoards'
+        ));
         $this->set('_serialize', ['deckCards']);
     }
 
@@ -65,9 +70,6 @@ class DeckCardsController extends AppController
     /**
      * Add method
      *
-     * @param int $deckId
-     * @param int $cardId
-     * @param int $board
      * @return boolean
      */
     public function add()
@@ -116,8 +118,6 @@ class DeckCardsController extends AppController
             return true;
         }
         return false;
-
-
     }
 
     /**
@@ -148,7 +148,6 @@ class DeckCardsController extends AppController
         $cardId = $this->request->getData('cardId');
         $board = $this->request->getData('board');
 
-        //レコードがあればupdate, なければinsert
         $deckCardData = $this->DeckCards->find()
             ->where([
                 'deck_id' => $deckId,
@@ -167,6 +166,25 @@ class DeckCardsController extends AppController
         }
 
         $this->set(true,'res');
+    }
+
+    /**
+     * basicLands
+     * 基本土地追加
+     *
+     * @param int $deckId
+     */
+    public function basicLands($deckId)
+    {
+        $deck = $this->Decks->get($deckId);
+        //枚数初期値
+        $counts = $this->DeckCards->getBasicLandCounts($deckId);
+
+        //基本土地のカードid呼び出し
+        $basicLandIds = DeckCardConsts::BASIC_LAND_IDS;
+
+        $this->Pack->set(compact('deckId', 'basicLandIds'));
+        $this->set(compact('deck', 'counts', 'basicLandIds'));
     }
 
 }

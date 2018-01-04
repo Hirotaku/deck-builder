@@ -3,7 +3,7 @@
     <h3>Deck Lists</h3>
   </div>
   <div class="col-xs-4">
-      <?= $this->Html->link(__('New Deck'), ['controller' => 'Decks', 'action' => 'add'], ['class' => 'btn btn-sm btn-warning']) ?>
+      <?= $this->Html->link(__('New Deck'), ['controller' => 'Decks', 'action' => 'add'], ['class' => 'btn btn-sm btn-warning mgtp-20']) ?>
   </div>
 </div>
 <?php foreach ($decks as $deck): ?>

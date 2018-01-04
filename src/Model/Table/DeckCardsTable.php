@@ -148,7 +148,7 @@ class DeckCardsTable extends Table
 
     /**
      * getMainDeckSpells
-     * メインデッキのクリーチャーカード
+     * メインデッキのスペル
      *
      * @param int $deckId
      * @return object
@@ -159,7 +159,27 @@ class DeckCardsTable extends Table
             ->where([
                 'DeckCards.deck_id' => $deckId,
                 'DeckCards.board' => DeckCardConsts::MAIN_BOARD_ID,
-                'Cards.types NOT IN' => ['Creature', 'Lands']
+                'Cards.types NOT IN' => ['Creature', 'Land']
+            ])
+            ->contain(['Cards'])
+            ->order(['Cards.cmc' => 'ASC'])
+            ->all();
+    }
+
+    /**
+     * getMainDeckSpells
+     * メインデッキの土地
+     *
+     * @param int $deckId
+     * @return object
+     */
+    public function getMainDeckLands($deckId)
+    {
+        return $this->find()
+            ->where([
+                'DeckCards.deck_id' => $deckId,
+                'DeckCards.board' => DeckCardConsts::MAIN_BOARD_ID,
+                'Cards.types' => 'Land'
             ])
             ->contain(['Cards'])
             ->order(['Cards.cmc' => 'ASC'])
@@ -183,5 +203,55 @@ class DeckCardsTable extends Table
             ->contain(['Cards'])
             ->order(['Cards.cmc' => 'ASC'])
             ->all();
+    }
+
+    /**
+     * getBasicLandCounts
+     * 基本土地の枚数
+     *
+     * @param int $deckId
+     * @return object
+     */
+    public function getBasicLandCounts($deckId)
+    {
+        $basicLands = $this->find()
+            ->where([
+                'deck_id' => $deckId,
+                'Cards.type LIKE' => '%Basic Land%'
+            ])
+            ->contain(['Cards'])
+            ->all();
+
+        $counts = $this->newEntity();
+        $counts->plain = 0;
+        $counts->island = 0;
+        $counts->swamp = 0;
+        $counts->mountain = 0;
+        $counts->forest = 0;
+        foreach ($basicLands as $basicLand) {
+            switch ($basicLand->card->color_identity) {
+                case "W" :
+                    $counts->plain = $basicLand->count;
+                    break;
+
+                case "U" :
+                    $counts->island = $basicLand->count;
+                    break;
+
+                case "B" :
+                    $counts->swamp = $basicLand->count;
+                    break;
+
+                case "R" :
+                    $counts->mountain = $basicLand->count;
+                    break;
+
+                case "G" :
+                    $counts->forest = $basicLand->count;
+                    break;
+            }
+        }
+
+        return $counts;
     }
 }

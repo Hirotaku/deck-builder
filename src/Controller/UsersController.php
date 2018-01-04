@@ -48,7 +48,7 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect(['controller' => 'Users', 'action' => 'index']);
+                return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error(__('Invalid credentials, try again'));
         }

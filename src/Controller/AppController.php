@@ -64,8 +64,7 @@ class AppController extends Controller
             ],
             'loginRedirect' => [
                 'controller' => 'decks',
-                'action'     => 'index',
-                '?' => UserInfo::$user['id']
+                'action'     => 'index'
             ],
             'storage' => [
                 'className' => 'Session',
