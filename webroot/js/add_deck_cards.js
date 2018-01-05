@@ -3,9 +3,10 @@ $(document).ready(function() {
     var deckId = Pack.deckId;
     var cardId = Pack.cardId;
 
-    $('.main-add').on('click', function(){
-        var nowCount = $('#main-count').val();
-        var board = 1;
+    $('.btn-add').on('click', function(){
+        var boardId = $(this).attr('data-board-id');
+        var boardType = $(this).attr('data-board-type');
+        var nowCount = $("#" +boardType + "-count").val();
         $.ajax({
             url:Pack.baseUrl+'deck-cards/add',
             type:'post',
@@ -13,16 +14,17 @@ $(document).ready(function() {
             data:{
                 deckId: deckId,
                 cardId: cardId,
-                board: board
+                board: boardId
             }
         }).success(function(){
-            $('#main-count').val(parseInt(nowCount) + parseInt(1));
+            $("#" +boardType + "-count").val(parseInt(nowCount) + parseInt(1));
         });
     });
 
-    $('.main-delete').on('click', function(){
-        var board = 1;
-        var nowCount = $('#main-count').val();
+    $('.btn-delete').on('click', function(){
+        var boardId = $(this).attr('data-board-id');
+        var boardType = $(this).attr('data-board-type');
+        var nowCount = $("#" +boardType + "-count").val();
         if (nowCount == 0) {
             return;
         }
@@ -34,11 +36,11 @@ $(document).ready(function() {
             data:{
                 deckId: deckId,
                 cardId: cardId,
-                board: board,
+                board: boardId,
                 count: nowCount
             }
         }).success(function(){
-            $('#main-count').val(parseInt(nowCount) - parseInt(1));
+            $("#" +boardType + "-count").val(parseInt(nowCount) - parseInt(1));
         });
     });
 });

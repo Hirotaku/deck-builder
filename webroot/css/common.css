@@ -25,3 +25,33 @@
 .left {
   float: left;
 }
+
+/*.image-div {*/
+  /*position: relative;*/
+  /*height: 25px;*/
+  /*overflow: hidden;*/
+/*}*/
+/*.image-div img {*/
+/*-webkit-transform: translate(0%, -10%);*/
+/*!*-webkit-transform: translate(0px, -3px);*!*/
+/*max-width: 100%;*/
+/*}*/
+
+.image-col {
+  height: 30px;
+  padding-left: 0px!important;
+}
+
+.image-div {
+  margin-top: 1px;
+  position: relative;
+  -webkit-transform: scale(0.2);
+}
+.image-div img {
+  position:absolute;
+  clip: rect(35px, 200px, 175px, 20px);
+  margin-left: -20px;
+  margin-top: -35px;
+
+}
+

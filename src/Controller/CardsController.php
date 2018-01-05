@@ -8,6 +8,7 @@ use App\Controller\AppController;
  *
  * @property \App\Model\Table\CardsTable $Cards
  * @property \App\Model\Table\DeckCardsTable $DeckCards
+ * @property \App\Model\Table\DecksTable $Decks
  *
  * @method \App\Model\Entity\Card[] paginate($object = null, array $settings = [])
  */
@@ -27,6 +28,7 @@ class CardsController extends AppController
             'actions' => ['searchIndex']
         ]);
         $this->loadModel('DeckCards');
+        $this->loadModel('Decks');
     }
 
 
@@ -66,6 +68,8 @@ class CardsController extends AppController
      */
     public function view($deckId, $cardId)
     {
+        $deck = $this->Decks->get($deckId);
+
         $card = $this->Cards->get($cardId, [
             'contain' => ['DeckCards']
         ]);
@@ -73,7 +77,7 @@ class CardsController extends AppController
         $counts = $this->DeckCards->getCounts($deckId, $cardId);
 
         $this->Pack->set(compact('deckId', 'cardId'));
-        $this->set(compact('card', 'counts'));
+        $this->set(compact('card', 'counts', 'deck'));
         $this->set('_serialize', ['card']);
     }
 

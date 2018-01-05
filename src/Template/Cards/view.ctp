@@ -1,3 +1,6 @@
+<?php
+use App\Consts\DeckCardConsts;
+?>
 <div class="row">
   <div class="col-xs-12">
     <h4 class="">
@@ -17,13 +20,19 @@
           <hr />
           <div class="row">
             <div class="col-xs-4">
-              <p><?= __('main') ?></p>
+              <p><?= __('メイン') ?></p>
             </div>
             <div class="col-xs-2">
-              <?= $this->Form->button(__('+'), ['class' => 'btn btn-sm btn-default main-add']) ?>
+              <?= $this->Form->button(__('+'), [
+                  'class' => 'btn btn-sm btn-default btn-add',
+                  'data-board-type' => 'main', 'data-board-id' => DeckCardConsts::MAIN_BOARD_ID
+              ]) ?>
             </div>
             <div class="col-xs-2">
-              <?= $this->Form->button(__('-'), ['class' => 'btn btn-sm btn-default main-delete']) ?>
+              <?= $this->Form->button(__('-'), [
+                  'class' => 'btn btn-sm btn-default btn-delete',
+                  'data-board-type' => 'main', 'data-board-id' => DeckCardConsts::MAIN_BOARD_ID
+              ]) ?>
             </div>
             <div class="col-xs-2">
               <?= $this->Form->input('main_count', [
@@ -37,16 +46,57 @@
           </div>
 
           <div class="row">
-            <div class="col-xs-3">
-              <p><?= __('sideboard') ?></p>
+            <div class="col-xs-4">
+              <p><?= __('サイド') ?></p>
+            </div>
+            <div class="col-xs-2">
+                <?= $this->Form->button(__('+'), [
+                    'class' => 'btn btn-sm btn-default btn-add',
+                    'data-board-type' => 'side', 'data-board-id' => DeckCardConsts::SIDE_BOARD_ID
+                ]) ?>
+            </div>
+            <div class="col-xs-2">
+                <?= $this->Form->button(__('-'), [
+                    'class' => 'btn btn-sm btn-default btn-delete',
+                    'data-board-type' => 'side', 'data-board-id' => DeckCardConsts::SIDE_BOARD_ID
+                ]) ?>
+            </div>
+            <div class="col-xs-2">
+                <?= $this->Form->input('side_count', [
+                    'class' => 'card-count',
+                    'id' => 'side-count',
+                    'type' => 'text',
+                    'disabled' => true, 'label' => false,
+                    'value' => $counts->side_counts
+                ]); ?>
             </div>
           </div>
 
           <div class="row">
-            <div class="col-xs-3">
-              <p><?= __('main') ?></p>
+            <div class="col-xs-4">
+              <p><?= __('ストック') ?></p>
             </div>
-
+            <div class="col-xs-2">
+                <?= $this->Form->button(__('+'), [
+                    'class' => 'btn btn-sm btn-default btn-add',
+                    'data-board-type' => 'stock', 'data-board-id' => DeckCardConsts::STOCK_BOARD_ID
+                ]) ?>
+            </div>
+            <div class="col-xs-2">
+                <?= $this->Form->button(__('-'), [
+                    'class' => 'btn btn-sm btn-default btn-delete',
+                    'data-board-type' => 'stock', 'data-board-id' => DeckCardConsts::STOCK_BOARD_ID
+                ]) ?>
+            </div>
+            <div class="col-xs-2">
+                <?= $this->Form->input('stock_count', [
+                    'class' => 'card-count',
+                    'id' => 'stock-count',
+                    'type' => 'text',
+                    'disabled' => true, 'label' => false,
+                    'value' => $counts->stock_counts
+                ]); ?>
+            </div>
           </div>
 
       </div>
@@ -54,8 +104,13 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-2 col-xs-offset-4">
-    <a class="btn" href="#" onclick="javascript:window.history.back(-1);return false;">戻る</a>
+  <div class="col-xs-4 col-xs-offset-4 text-center">
+    <a class="btn" href="#" onclick="javascript:window.history.back(-1);return false;">検索結果へ</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4 col-xs-offset-4 mgtp-20 text-center">
+        <?= $this->Html->link(__('リストへ'), ['controller' => 'DeckCards', 'action' => 'index', $deck->id], ['class' => 'btn btn-default']) ?>
   </div>
 </div>
 

@@ -7,7 +7,7 @@
 
   </div>
 </div>
-<h5>Main Board</h5>
+<h5>- メイン -</h5>
 <h6>クリーチャー()</h6>
 <?= $this->partial('deck_card_list', ['deck' => $deck, 'deckCards' => $mainDeckCreatures]);?>
 
@@ -19,7 +19,8 @@
 </h6>
 <?= $this->partial('deck_card_list', ['deck' => $deck, 'deckCards' => $mainDeckLands]);?>
 
-<h5>Side Board</h5>
+<h5>- サイド -</h5>
 <?= $this->partial('deck_card_list', ['deck' => $deck, 'deckCards' => $sideBoards]);?>
 
-<h5>ストック</h5>
+<h5>- ストック -</h5>
+<?= $this->partial('deck_card_list', ['deck' => $deck, 'deckCards' => $stocks]);?>

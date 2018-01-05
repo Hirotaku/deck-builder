@@ -42,10 +42,12 @@ class DeckCardsController extends AppController
         $mainDeckLands = $this->DeckCards->getMainDeckLands($deckId);
 
         $sideBoards = $this->DeckCards->getSideBoards($deckId);
+        $stocks = $this->DeckCards->getStocks($deckId);
 
         $this->set(compact(
             'deck', 'mainDeckCreatures',
-            'mainDeckSpells', 'mainDeckLands', 'sideBoards'
+            'mainDeckSpells', 'mainDeckLands', 'sideBoards',
+            'stocks'
         ));
         $this->set('_serialize', ['deckCards']);
     }

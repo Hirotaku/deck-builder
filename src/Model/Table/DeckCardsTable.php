@@ -109,6 +109,7 @@ class DeckCardsTable extends Table
         $counts = $this->newEntity();
         $counts->main_counts = 0;
         $counts->side_counts = 0;
+        $counts->stock_counts = 0;
         if ($deckCards->isEmpty()) {
             return $counts;
         }
@@ -119,6 +120,9 @@ class DeckCardsTable extends Table
 
             } elseif ($deckCard->board == DeckCardConsts::MAIN_BOARD_ID) {
                 $counts->side_counts = $deckCard->count;
+
+            } elseif ($deckCard->board == DeckCardConsts::STOCK_BOARD_ID) {
+                $counts->stock_counts = $deckCard->count;
 
             }
         }
@@ -187,7 +191,7 @@ class DeckCardsTable extends Table
     }
 
     /**
-     * getMainDeckSpells
+     * getSideBoards
      * サイドボード
      *
      * @param int $deckId
@@ -199,6 +203,25 @@ class DeckCardsTable extends Table
             ->where([
                 'DeckCards.deck_id' => $deckId,
                 'DeckCards.board' => DeckCardConsts::SIDE_BOARD_ID,
+            ])
+            ->contain(['Cards'])
+            ->order(['Cards.cmc' => 'ASC'])
+            ->all();
+    }
+
+    /**
+     * getStocks
+     * ストック
+     *
+     * @param int $deckId
+     * @return object
+     */
+    public function getStocks($deckId)
+    {
+        return $this->find()
+            ->where([
+                'DeckCards.deck_id' => $deckId,
+                'DeckCards.board' => DeckCardConsts::STOCK_BOARD_ID,
             ])
             ->contain(['Cards'])
             ->order(['Cards.cmc' => 'ASC'])
