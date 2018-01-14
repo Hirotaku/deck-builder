@@ -44,7 +44,7 @@ class ApiController extends AppController
     public function getCardsData()
     {
         //SDKでデータを取得
-        $cards = mtgsdk\Card::where(['set' => 'xln'])
+        $cards = mtgsdk\Card::where(['set' => 'rix'])
 //            ->where(['rarity' => 'Mythic Rare'])
             ->all();
 
@@ -52,14 +52,13 @@ class ApiController extends AppController
         //データを保存可能な形に成形していく
         $result = true;
         foreach ($cards as $card) {
-
             //$card は object
             $saveData = $this->Cards->makeSaveData($card);
-
+            
             if(!$this->Cards->save($saveData)) {
-                debug($card);
+
                 $result = false;
-                exit;
+
             }
 
         }

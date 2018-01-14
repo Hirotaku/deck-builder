@@ -296,7 +296,12 @@ class CardsTable extends Table
         if (isset($card->originalType)) {
             $saveData->original_type = $card->originalType;
         }
-        $saveData = $this->setLegalitiesData($saveData, $card->legalities);
+        if (isset($card->legalities)) {
+            $saveData = $this->setLegalitiesData($saveData, $card->legalities);
+        } else {
+            //発売前では、リーガル情報がない。
+            $saveData = $this->setLegalitiesDataBeforeRelease($saveData);
+        }
         $saveData->api_id = $card->id;
 
         return $saveData;
@@ -356,6 +361,26 @@ class CardsTable extends Table
                     break;
             }
         }
+
+        return $saveData;
+    }
+
+    /**
+     * setLegalitiesDataBeforeRelease
+     * 発売前の製品にリーガル情報をセット
+     * ※基本的に発売前からBANされることはないので、
+     * すべて許可でセットする
+     *
+     * @param object $saveData
+     * @return object
+     */
+    private function setLegalitiesDataBeforeRelease($saveData)
+    {
+        $saveData->commander = true;
+        $saveData->block = true;
+        $saveData->legacy = true;
+        $saveData->standard = true;
+        $saveData->vintage = true;
 
         return $saveData;
     }
