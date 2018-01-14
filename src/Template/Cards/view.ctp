@@ -13,8 +13,8 @@ use App\Consts\DeckCardConsts;
     <div class="card">
       <div class="content">
           <div class="row">
-            <div class="col-xs-12">
-              <img src="<?= $card->image_url?>" width="100%">
+            <div class="col-xs-8 col-xs-offset-2">
+              <img src="<?= $card->image_url?>" class="card-view-img">
             </div>
           </div>
           <hr />

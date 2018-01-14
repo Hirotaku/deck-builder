@@ -76,6 +76,9 @@ class CardsController extends AppController
 
         $counts = $this->DeckCards->getCounts($deckId, $cardId);
 
+        //todo: 両面の場合、表示ctpを切り替える。裏面側を取得する。
+        //todo: 裏面を選択しても、表面で表示する必要がある。
+
         $this->Pack->set(compact('deckId', 'cardId'));
         $this->set(compact('card', 'counts', 'deck'));
         $this->set('_serialize', ['card']);
