@@ -54,7 +54,7 @@ class ApiController extends AppController
         foreach ($cards as $card) {
             //$card は object
             $saveData = $this->Cards->makeSaveData($card);
-            
+
             if(!$this->Cards->save($saveData)) {
 
                 $result = false;

@@ -3,7 +3,7 @@ use App\Statics\UserInfo;
 ?>
 <div class="sidebar-wrapper">
     <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text">
+        <a class="simple-text">
             MENU
         </a>
     </div>
@@ -22,10 +22,16 @@ use App\Statics\UserInfo;
             </a>
         </li>
         <li>
-            <a href="user.html">
+            <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'view', UserInfo::$user['id']]); ?>">
                 <i class="ti-user"></i>
                 <p>User Profile</p>
             </a>
+        </li>
+        <li>
+          <a href="<?= $this->Url->build(['controller' => 'users', 'action' => 'logout']); ?>">
+            <i class="ti-hand-open"></i>
+            <p>Logout</p>
+          </a>
         </li>
     </ul>
 </div>
