@@ -59,11 +59,11 @@ class DecksController extends AppController
         if ($this->request->is('post')) {
             $deck = $this->Decks->patchEntity($deck, $this->request->getData());
             if ($this->Decks->save($deck)) {
-                $this->Flash->success(__('The deck has been saved.'));
+                $this->Flash->success(__('デッキリストを作成しました。'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The deck could not be saved. Please, try again.'));
+            $this->Flash->error(__('デッキリストを作成できませんでした。もう一度作成してください。'));
         }
         $users = $this->Decks->Users->find('list', ['limit' => 200]);
         $this->set(compact('deck', 'users'));
@@ -85,11 +85,11 @@ class DecksController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $deck = $this->Decks->patchEntity($deck, $this->request->getData());
             if ($this->Decks->save($deck)) {
-                $this->Flash->success(__('The deck has been saved.'));
+                $this->Flash->success(__('更新しました。'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The deck could not be saved. Please, try again.'));
+            $this->Flash->error(__('更新できませんでした。もう一度お願いします。'));
         }
         $users = $this->Decks->Users->find('list', ['limit' => 200]);
         $this->set(compact('deck', 'users'));

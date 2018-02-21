@@ -20,9 +20,11 @@
           </div>
 
           <div class="col-xs-5">
-            <div class="icon-big icon-warning text-center">
-              <i class="ti-server"></i>
-            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-xs-12">
+              <?= h($deck->memo) ?>
           </div>
         </div>
         </a>
@@ -36,4 +38,5 @@
       </div>
     </div>
   </div>
+</div>
 <?php endforeach; ?>
