@@ -44,12 +44,35 @@ class DeckCardsController extends AppController
         $sideBoards = $this->DeckCards->getSideBoards($deckId);
         $stocks = $this->DeckCards->getStocks($deckId);
 
+        //各枚数
+        $counts['creatures'] = $this->getCounts($mainDeckCreatures);
+        $counts['spells'] = $this->getCounts($mainDeckSpells);
+        $counts['lands'] = $this->getCounts($mainDeckLands);
+        $counts['sideboards'] = $this->getCounts($sideBoards);
+        $counts['total'] = $counts['creatures'] + $counts['spells'] + $counts['lands'];
+
         $this->set(compact(
             'deck', 'mainDeckCreatures',
             'mainDeckSpells', 'mainDeckLands', 'sideBoards',
-            'stocks'
+            'stocks', 'counts'
         ));
         $this->set('_serialize', ['deckCards']);
+    }
+
+    /**
+     * getCounts method
+     *
+     * @param entity $cards
+     * @return int
+     */
+    private function getCounts($cards)
+    {
+        $count = 0;
+        foreach ($cards as $card) {
+            $count = $count + $card->count;
+        }
+
+        return $count;
     }
 
     /**

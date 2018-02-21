@@ -7,19 +7,19 @@
 
   </div>
 </div>
-<h5>- メイン -</h5>
-<h6>クリーチャー()</h6>
+<h5>- メイン(<?= $counts['total'] ?>) -</h5>
+<h6>クリーチャー(<?= $counts['creatures'] ?>)</h6>
 <?= $this->partial('deck_card_list', ['deck' => $deck, 'deckCards' => $mainDeckCreatures]);?>
 
-<h6>スペル</h6>
+<h6>スペル(<?= $counts['spells'] ?>)</h6>
 <?= $this->partial('deck_card_list', ['deck' => $deck, 'deckCards' => $mainDeckSpells]);?>
 
 <h6>
-  土地() <?= $this->Html->link(__('基本土地追加'), ['controller' => 'DeckCards', 'action' => 'basic_lands', $deck->id]) ?>
+  土地(<?= $counts['lands'] ?>) <?= $this->Html->link(__('基本土地追加'), ['controller' => 'DeckCards', 'action' => 'basic_lands', $deck->id]) ?>
 </h6>
 <?= $this->partial('deck_card_list', ['deck' => $deck, 'deckCards' => $mainDeckLands]);?>
 
-<h5>- サイド -</h5>
+<h5>- サイド(<?= $counts['sideboards'] ?>) -</h5>
 <?= $this->partial('deck_card_list', ['deck' => $deck, 'deckCards' => $sideBoards]);?>
 
 <h5>- ストック -</h5>
