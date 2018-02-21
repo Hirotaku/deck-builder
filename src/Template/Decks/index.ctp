@@ -13,13 +13,10 @@
       <div class="content">
         <a href="<?= $this->Url->build(['controller' => 'DeckCards', 'action' => 'index', $deck->id]); ?>">
         <div class="row">
-          <div class="col-md-6 col-xs-7">
+          <div class="col-md-12 col-xs-12">
               <h4>
                   <?= h($deck->name) ?>
               </h4>
-          </div>
-
-          <div class="col-xs-5">
           </div>
         </div>
         <div class="row">
