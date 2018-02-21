@@ -54,24 +54,16 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
-
-        $validator
             ->scalar('name')
-            ->allowEmpty('name');
+            ->notEmpty('name');
 
         $validator
             ->scalar('loginid')
-            ->allowEmpty('loginid');
+            ->notEmpty('loginid');
 
         $validator
             ->scalar('password')
-            ->allowEmpty('password');
-
-        $validator
-            ->dateTime('deleted')
-            ->allowEmpty('deleted');
+            ->notEmpty('password');
 
         return $validator;
     }
