@@ -66,3 +66,15 @@
 .div-card-name {
   font-size: small;
 }
+
+.fs-medium {
+  font-size: medium;
+}
+
+.fs-small {
+  font-size: small!important;
+}
+
+.thin-input {
+  height: 30px;
+}
