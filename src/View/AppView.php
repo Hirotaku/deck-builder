@@ -14,6 +14,7 @@
 namespace App\View;
 
 use Cake\View\View;
+use Partial\View\PartialTrait;
 
 /**
  * Application View
@@ -24,7 +25,7 @@ use Cake\View\View;
  */
 class AppView extends View
 {
-
+    use PartialTrait;
     /**
      * Initialization hook method.
      *
@@ -36,5 +37,7 @@ class AppView extends View
      */
     public function initialize()
     {
+        parent::initialize();
+        $this->loadHelper('CardDetail');
     }
 }

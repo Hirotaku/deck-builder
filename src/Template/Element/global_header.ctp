@@ -1,3 +1,6 @@
+<?php
+use App\Statics\UserInfo;
+?>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -7,31 +10,13 @@
                 <span class="icon-bar bar2"></span>
                 <span class="icon-bar bar3"></span>
             </button>
-            <a class="navbar-brand" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">MTG Deck-Builder</a>
+            <a class="navbar-brand" href="<?= $this->Url->build(['controller' => 'Decks', 'action' => 'index', UserInfo::$user['id']]); ?>">MTG Deck-Builder</a>
         </div>
         <!--  SP画面時、Sideberに取り込まれる要素      -->
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="ti-bell"></i>
-                        <p class="notification">5</p>
-                        <p>Notifications</p>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Notification 1</a></li>
-                        <li><a href="#">Notification 2</a></li>
-                        <li><a href="#">Notification 3</a></li>
-                        <li><a href="#">Notification 4</a></li>
-                        <li><a href="#">Another notification</a></li>
-                    </ul>
-                </li>
                 <li>
-                    <a href="#">
-                        <i class="ti-settings"></i>
-                        <p>Login User</p>
-                    </a>
+                    <p>ようこそ！ <?= UserInfo::$user['name'] ?></p>
                 </li>
             </ul>
         </div>

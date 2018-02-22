@@ -1,0 +1,68 @@
+.main-content {
+  padding-top: 0px!important;
+}
+
+.card-count {
+  width: 30px;
+  text-align: center;
+}
+
+.land-count {
+  width: 30px;
+  text-align: center;
+}
+
+.deck-list-row {
+  border-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #c0c2c5;
+}
+
+.mgtp-20  {
+  margin-top: 20px;
+}
+
+.mgbt-20  {
+  margin-bottom: 20px;
+}
+
+.left {
+  float: left;
+}
+
+/*.image-div {*/
+  /*position: relative;*/
+  /*height: 25px;*/
+  /*overflow: hidden;*/
+/*}*/
+/*.image-div img {*/
+/*-webkit-transform: translate(0%, -10%);*/
+/*!*-webkit-transform: translate(0px, -3px);*!*/
+/*max-width: 100%;*/
+/*}*/
+
+.image-col {
+  height: 30px;
+  padding-left: 0px!important;
+}
+
+.image-div {
+  margin-top: 1px;
+  position: relative;
+  -webkit-transform: scale(0.2);
+}
+.image-div img {
+  position:absolute;
+  clip: rect(35px, 200px, 175px, 20px);
+  margin-left: -20px;
+  margin-top: -35px;
+
+}
+
+.img-mana-symbol {
+  width: 15%;
+}
+
+.div-card-name {
+  font-size: small;
+}

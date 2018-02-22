@@ -1,13 +1,12 @@
-<div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-  <fieldset>
-    <legend><?= __('Edit User') ?></legend>
-      <?php
-      echo $this->Form->control('name');
-      echo $this->Form->control('loginid');
-      echo $this->Form->control('password');
-      ?>
-  </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+<div class="col-lg-8 col-md-7">
+  <div class="card">
+    <div class="header">
+      <h4 class="title"><?= __('ユーザー 編集') ?></h4>
+    </div>
+    <div class="content">
+        <?= $this->Form->create($user) ?>
+        <?= $this->partial('form');?>
+        <?= $this->Form->end() ?>
+    </div>
+  </div>
+

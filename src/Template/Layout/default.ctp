@@ -13,7 +13,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Deck-Builder';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,8 +21,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
+        <?= $cakeDescription ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
@@ -40,6 +39,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <?= $this->Html->css('themify-icons.css') ?>
 
+    <?= $this->Html->css('common.css') ?>
 
 
      <!--   Core JS Files   -->
@@ -62,6 +62,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <?= $this->Pack->render();?>
 </head>
 <body>
 <div class="wrapper">
@@ -71,7 +72,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Flash->render() ?>
     <div class="main-panel">
         <?= $this->element('global_header') ?>
-        <div class="content">
+        <div class="content main-content">
           <div class="container-fluid">
           <?= $this->fetch('content') ?>
           </div>

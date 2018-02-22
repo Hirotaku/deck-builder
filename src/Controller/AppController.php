@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use App\Statics\UserInfo;
+use Cake\Routing\Router;
 
 /**
  * Application Controller
@@ -62,8 +63,8 @@ class AppController extends Controller
                 'action'     => 'login',
             ],
             'loginRedirect' => [
-                'controller' => 'users',
-                'action'     => 'index',
+                'controller' => 'decks',
+                'action'     => 'index'
             ],
             'storage' => [
                 'className' => 'Session',
@@ -86,6 +87,10 @@ class AppController extends Controller
         UserInfo::$user = $this->Auth->user();
         // 後で上書きしたい場合があるのでbeforeFilterでセット
         $this->viewBuilder()->layout('default');
+
+        $baseUrl = Router::url('/', true);
+        $this->Pack->set(compact('baseUrl'));
+        $this->set(compact('baseUrl'));
     }
 
     /**
