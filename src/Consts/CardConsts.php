@@ -53,4 +53,56 @@ class CardConsts
        'R' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_RED,
        'G' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_GREEN,
     ];
+
+    //検索画面でのセレクトボックス要素等
+    //色
+    const COLOR_IDENTITY_WHITE = 'W';
+    const COLOR_IDENTITY_BLUE = 'U';
+    const COLOR_IDENTITY_BLACK = 'B';
+    const COLOR_IDENTITY_RED = 'R';
+    const COLOR_IDENTITY_GREEN = 'G';
+
+    const LIST_COLOR_IDENTITY = [
+        self::COLOR_IDENTITY_WHITE => '白',
+        self::COLOR_IDENTITY_BLUE => '青',
+        self::COLOR_IDENTITY_BLACK => '黒',
+        self::COLOR_IDENTITY_RED => '赤',
+        self::COLOR_IDENTITY_GREEN => '緑',
+    ];
+
+    //カードタイプ
+    const CARD_TYPE_CREATURE = 'Creature';
+    const CARD_TYPE_SORCERY = 'Sorcery';
+    const CARD_TYPE_INSTANT = 'Instant';
+    const CARD_TYPE_ENCHANTMENT = 'Enchantment';
+    const CARD_TYPE_ARTIFACT = 'Artifact';
+    const CARD_TYPE_PLANESWALKER = 'Planeswalker';
+    const CARD_TYPE_LAND = 'Land';
+
+    const LIST_CARD_TYPE = [
+        self::CARD_TYPE_CREATURE => 'クリーチャー',
+        self::CARD_TYPE_SORCERY => 'ソーサリー',
+        self::CARD_TYPE_INSTANT => 'インスタント',
+        self::CARD_TYPE_ENCHANTMENT => 'エンチャント',
+        self::CARD_TYPE_ARTIFACT => 'アーティファクト',
+        self::CARD_TYPE_PLANESWALKER => 'プレインズウォーカー',
+        self::CARD_TYPE_LAND => '土地',
+    ];
+
+    //サブタイプ => DBから取得
+    //セット名 => DBから
+
+    //レアリティ
+    const RARITY_COMMON = 'Common';
+    const RARITY_UNCOMMON = 'Uncommon';
+    const RARITY_RARE = 'Rare';
+    const RARITY_MYTHIC_RARE = 'Mythic Rare';
+
+    const LIST_RARITY = [
+        self::RARITY_COMMON => 'コモン',
+        self::RARITY_UNCOMMON => 'アンコモン',
+        self::RARITY_RARE => 'レア',
+        self::RARITY_MYTHIC_RARE => '神話レア',
+    ];
+
 }
