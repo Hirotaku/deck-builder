@@ -77,7 +77,7 @@ $cakeDescription = 'Deck-Builder';
           <?= $this->fetch('content') ?>
           </div>
         </div>
-        <footer class="footer">
+        <footer class="footer mgtp-20">
             <?= $this->element('global_footer') ?>
         </footer>
     </div>

@@ -1,7 +1,7 @@
 <?php
 use App\Statics\UserInfo;
 ?>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default global-header">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle">

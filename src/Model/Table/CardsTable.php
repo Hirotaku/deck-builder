@@ -221,10 +221,22 @@ class CardsTable extends Table
                 'after' => true,
             ])
             ->value('cmc')
-            ->like('color_identity')
-            ->like('type')
-            ->value('rarity')
-            ->like('text')
+            ->add('color_identity', 'Search.value', [
+                'multiValue' => true,
+            ])
+            ->add('types', 'Search.value', [
+                'multiValue' => true,
+            ])
+            ->add('rarity', 'Search.value', [
+                'multiValue' => true,
+            ])
+            ->add('set', 'Search.value', [
+                'multiValue' => true,
+            ])
+            ->like('text', [
+                'before' => true,
+                'after' => true,
+            ])
             ->value('power')
             ->value('toughness');
 
@@ -384,4 +396,5 @@ class CardsTable extends Table
 
         return $saveData;
     }
+
 }

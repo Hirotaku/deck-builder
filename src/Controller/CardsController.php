@@ -14,6 +14,10 @@ use App\Controller\AppController;
  */
 class CardsController extends AppController
 {
+    public $paginate = [
+        'limit' => 1000 //無制限にして、orderかけられるようにしたい
+    ];
+
     /**
      * initialize
      *
