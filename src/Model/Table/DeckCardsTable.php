@@ -118,7 +118,7 @@ class DeckCardsTable extends Table
             if ($deckCard->board == DeckCardConsts::MAIN_BOARD_ID) {
                 $counts->main_counts = $deckCard->count;
 
-            } elseif ($deckCard->board == DeckCardConsts::MAIN_BOARD_ID) {
+            } elseif ($deckCard->board == DeckCardConsts::SIDE_BOARD_ID) {
                 $counts->side_counts = $deckCard->count;
 
             } elseif ($deckCard->board == DeckCardConsts::STOCK_BOARD_ID) {
