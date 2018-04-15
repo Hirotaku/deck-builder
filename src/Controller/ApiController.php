@@ -44,7 +44,7 @@ class ApiController extends AppController
     public function getCardsData()
     {
         //SDKでデータを取得
-        $cards = mtgsdk\Card::where(['set' => 'rix'])
+        $cards = mtgsdk\Card::where(['set' => 'dom'])
 //            ->where(['rarity' => 'Mythic Rare'])
             ->all();
 
