@@ -6,5 +6,4 @@
         <?= $this->Paginator->next(' >') ?>
         <?= $this->Paginator->last(' >>') ?>
     </ul>
-    <p><?= $this->Paginator->counter(['format' => __('{{page}} / {{pages}}pages, {{current}} / {{count}} records')]) ?></p>
 </div>

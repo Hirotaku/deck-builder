@@ -37,3 +37,4 @@
   </div>
 </div>
 <?php endforeach; ?>
+<?= $this->element('paginator') ?>
