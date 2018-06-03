@@ -29,4 +29,5 @@
   </div>
 <?php endforeach; ?>
 </div>
+<?= $this->element('paginator') ?>
 
