@@ -45,10 +45,9 @@ class CardsController extends AppController
     public function searchIndex($deckId)
     {
         $this->set(compact('deckId'));
+
         if (!empty($this->request->getQuery())) {
-            $query = $this->Cards->find('search', ['search' => $this->request->getQuery()]);
-            $this->set('cards', $this->paginate($query));
-            $this->render('list');
+            $this->redirect(['action' => 'list', $deckId, '?' => $this->request->getQuery()]);
         }
     }
 
@@ -56,11 +55,14 @@ class CardsController extends AppController
      * searchIndex method
      * カード検索画面
      *
-     * @param array $searchQuery
+     * @param int $deckId
      * @return \Cake\Http\Response|void
      */
-    public function list($searchQuery)
+    public function list($deckId)
     {
+        $query = $this->Cards->find('search', ['search' => $this->request->getQuery()]);
+        $this->set('cards', $this->paginate($query));
+        $this->set(compact('deckId'));
     }
 
     /**

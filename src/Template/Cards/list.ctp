@@ -3,7 +3,35 @@
     <h4 class="search-h4"><?= __('Search Result');?></h4>
   </div>
   <div class="col-xs-4">
-    <a class="btn btn-sm btn-primary" href="#" onclick="javascript:window.history.back(-1);return false;">検索へ</a>
+      <?= $this->Html->link(__('検索へ'), ['action' => 'search_index', $deckId], ['class' => 'btn btn-info']) ?>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-xs-12">
+    <div class="card">
+    <div class="card-header">Sort</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-xs-4">
+            <?= $this->Paginator->sort('cmc', 'マナコスト') ?>
+        </div>
+        <div class="col-xs-4">
+            <?= $this->Paginator->sort('name', 'カード名') ?>
+        </div>
+        <div class="col-xs-4">
+            <?= $this->Paginator->sort('type', 'カードタイプ') ?>
+        </div>
+        <div class="col-xs-4">
+            <?= $this->Paginator->sort('set', 'セット') ?>
+        </div>
+        <div class="col-xs-4">
+            <?= $this->Paginator->sort('power', 'パワー') ?>
+        </div>
+        <div class="col-xs-4">
+            <?= $this->Paginator->sort('toughness', 'タフネス') ?>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="row">
