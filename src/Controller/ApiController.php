@@ -41,13 +41,12 @@ class ApiController extends AppController
      *
      *
      */
-    public function getCardsData()
+    public function getCardsData($set)
     {
         //SDKでデータを取得
-        $cards = mtgsdk\Card::where(['set' => 'dom'])
+        $cards = mtgsdk\Card::where(['set' => $set])
 //            ->where(['rarity' => 'Mythic Rare'])
             ->all();
-
 
         //データを保存可能な形に成形していく
         $result = true;
