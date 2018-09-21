@@ -63,11 +63,14 @@ class DecksTable extends Table
 
         $validator
             ->scalar('name')
-            ->allowEmpty('name');
+            ->notEmpty('name');
 
         $validator
             ->scalar('memo')
             ->allowEmpty('memo');
+
+        $validator
+            ->notEmpty('format');
 
         $validator
             ->dateTime('deleted')

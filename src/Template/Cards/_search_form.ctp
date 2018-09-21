@@ -1,5 +1,6 @@
 <?php
 use App\Consts\CardConsts;
+use App\Consts\DeckConsts;
 ?>
 
 <div class="row">
@@ -83,10 +84,9 @@ use App\Consts\CardConsts;
   </div>
 
   <div class="col-md-12 col-xs-12">
-    <label class="fs-small"><?= __('フォーマット') ?></label>
     <div class="form-group select-multiple">
-        <?= $this->Form->input('standard', [
-            'type' => 'checkbox', 'class' => 'form-control border-input thin-input', 'label' => 'スタンダード'
+        <?= $this->Form->input(DeckConsts::FORMAT_COLUMN_LISTS[$deck->format], [
+            'type' => 'hidden', 'class' => 'form-control border-input thin-input', 'value' => true
         ]); ?>
     </div>
   </div>

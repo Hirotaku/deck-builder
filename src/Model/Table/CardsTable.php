@@ -238,7 +238,15 @@ class CardsTable extends Table
                 'after' => true,
             ])
             ->value('power')
-            ->value('toughness');
+            ->value('toughness')
+            //format
+            ->value('standard')
+            ->value('modern')
+            ->value('legacy')
+            ->value('vintage')
+            ->value('commander')
+
+            ;
 
 
         return $searchManager;
@@ -359,11 +367,11 @@ class CardsTable extends Table
                 case 1: //Commander
                     $saveData->commander = $boolean;
                     break;
-                case 2: //Block
-                    $saveData->block = $boolean;
-                    break;
-                case 3: //Legacy
+                case 2: //Legacy
                     $saveData->legacy = $boolean;
+                    break;
+                case 3: //Modern
+                    $saveData->modern = $boolean;
                     break;
                 case 4: //Standard
                     $saveData->standard = $boolean;
@@ -389,7 +397,7 @@ class CardsTable extends Table
     private function setLegalitiesDataBeforeRelease($saveData)
     {
         $saveData->commander = true;
-        $saveData->block = true;
+        $saveData->modern = true;
         $saveData->legacy = true;
         $saveData->standard = true;
         $saveData->vintage = true;

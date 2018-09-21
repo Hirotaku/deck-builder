@@ -30,13 +30,7 @@ class Deck extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
-        'user_id' => true,
-        'memo' => true,
-        'deleted' => true,
-        'created' => true,
-        'modified' => true,
-        'user' => true,
-        'deck_cards' => true
+        '*' => true,
+        'id' => false
     ];
 }
