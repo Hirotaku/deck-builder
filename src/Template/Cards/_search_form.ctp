@@ -49,12 +49,11 @@ use App\Consts\DeckConsts;
     </div>
   </div>
   <div class="col-md-12 col-xs-12">
-    <p>-- ここから↓まだ動きません。。 --</p>
 
     <div class="form-group">
-      <label class="fs-small"><?= __('セット名') ?></label>
-        <?= $this->Form->input('setName', [
-            'type' => 'text', 'class' => 'form-control border-input thin-input', 'label' => false
+      <label class="fs-small"><?= __('セット名') ?><?= __('※大文字略称3文字なら検索可') ?></label>
+        <?= $this->Form->input('set', [
+            'type' => 'text', 'class' => 'form-control border-input thin-input', 'label' => false, 'placeholder' => 'XLNなど'
         ]); ?>
     </div>
   </div>
@@ -92,7 +91,6 @@ use App\Consts\DeckConsts;
   </div>
 </div>
 <div class="text-center">
-  <p>-- ここまでまだ動きません。。 --</p>
     <?= $this->Form->button(__('検索'), ['class' => 'btn btn-info btn-fill btn-wd', 'name' => 'search']) ?>
 </div>
 <div class="clearfix"></div>

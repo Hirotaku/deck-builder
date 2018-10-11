@@ -221,8 +221,10 @@ class CardsTable extends Table
                 'after' => true,
             ])
             ->value('cmc')
-            ->add('color_identity', 'Search.value', [
+            ->like('color_identity',  [
                 'multiValue' => true,
+                'before' => true,
+                'after' => true,
             ])
             ->add('types', 'Search.value', [
                 'multiValue' => true,
@@ -230,8 +232,8 @@ class CardsTable extends Table
             ->add('rarity', 'Search.value', [
                 'multiValue' => true,
             ])
-            ->add('set', 'Search.value', [
-                'multiValue' => true,
+            ->value('set', [
+//                'multiValue' => true,
             ])
             ->like('text', [
                 'before' => true,
