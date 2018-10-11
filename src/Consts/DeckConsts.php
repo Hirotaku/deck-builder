@@ -29,4 +29,12 @@ class DeckConsts
         self::FORMAT_VINTAGE => 'vintage',
         self::FORMAT_COMMANDER => 'commander',
     ];
+
+    const FORMAT_VIEW_LISTS = [
+        self::FORMAT_STANDARD => 'Standard',
+        self::FORMAT_MODERN => 'Modern',
+        self::FORMAT_LEGACY => 'Legacy',
+        self::FORMAT_VINTAGE => 'Vintage',
+        self::FORMAT_COMMANDER => 'Commander',
+    ];
 }

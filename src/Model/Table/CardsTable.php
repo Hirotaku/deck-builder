@@ -363,20 +363,20 @@ class CardsTable extends Table
             } else {
                 $boolean = false;
             }
-            switch ($key){
-                case 1: //Commander
+            switch ($legal['format']){
+                case 'Commander': //Commander
                     $saveData->commander = $boolean;
                     break;
-                case 2: //Legacy
-                    $saveData->legacy = $boolean;
-                    break;
-                case 3: //Modern
+                case 'Modern': //Modern
                     $saveData->modern = $boolean;
                     break;
-                case 4: //Standard
+                case 'Legacy': //Legacy
+                    $saveData->legacy = $boolean;
+                    break;
+                case 'Standard': //Standard
                     $saveData->standard = $boolean;
                     break;
-                case 5: //Vintage
+                case 'Vintage': //Vintage
                     $saveData->vintage = $boolean;
                     break;
             }
