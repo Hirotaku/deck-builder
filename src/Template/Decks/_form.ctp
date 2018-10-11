@@ -1,3 +1,14 @@
+<?php
+use App\Consts\DeckConsts;
+?>
+<div class="row">
+  <div class="col-md-6 col-sm-6">
+    <div class="form-group">
+      <label><?= __('フォーマット') ?></label>
+        <?= $this->Form->input('format', ['type' => 'select', 'options' => DeckConsts::FORMAT_LISTS, 'class' => 'form-control border-input', 'label' => false]); ?>
+    </div>
+  </div>
+</div>
 <div class="row">
     <div class="col-md-6 col-sm-6">
         <div class="form-group">

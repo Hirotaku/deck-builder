@@ -28,11 +28,11 @@ create_table "cards", force: :true do |t|
   t.text   "printings",             comment:""
   t.text   "original_text",             comment:""
   t.text   "original_type",             comment:""
-  t.text   "commander",             comment:""
-  t.text   "block",             comment:""
-  t.text   "legacy",             comment:""
-  t.text   "standard",             comment:""
-  t.text   "vintage",             comment:""
+  t.boolean   "commander",             comment:""
+  t.boolean   "modern",             comment:""
+  t.boolean   "legacy",             comment:""
+  t.boolean   "standard",             comment:""
+  t.boolean   "vintage",             comment:""
   t.text   "api_id",             comment:"もとはid表記"
 
 
@@ -93,6 +93,7 @@ create_table "decks", force: :true do |t|
   t.text   "name",                             comment:"名称"
   t.integer  "user_id",                     comment:"デッキid"
   t.text   "memo",                        comment:"メモ"
+  t.integer   "format",                        comment:"フォーマット"
 
 
   t.datetime "deleted",                         comment:"削除フラグ"

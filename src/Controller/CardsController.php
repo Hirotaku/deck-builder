@@ -44,7 +44,10 @@ class CardsController extends AppController
      */
     public function searchIndex($deckId)
     {
+        $deck = $this->Decks->findById($deckId)->first();
+
         $this->set(compact('deckId'));
+        $this->set(compact('deck'));
 
         if (!empty($this->request->getQuery())) {
             $this->redirect(['action' => 'list', $deckId, '?' => $this->request->getQuery()]);

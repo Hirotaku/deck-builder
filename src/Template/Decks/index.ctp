@@ -1,3 +1,6 @@
+<?php
+use App\Consts\DeckConsts;
+?>
 <div class="row">
   <div class="col-xs-8">
     <h3>Deck Lists</h3>
@@ -11,20 +14,25 @@
   <div class="col-lg-6 col-sm-6">
     <div class="card">
       <div class="content">
+        <div class="row">
+          <div class="col-md-12 col-xs-12">
+            <label class="label-<?= DeckConsts::FORMAT_COLUMN_LISTS[$deck->format]; ?>"><?= DeckConsts::FORMAT_VIEW_LISTS[$deck->format]; ?></label>
+          </div>
+        </div>
         <a href="<?= $this->Url->build(['controller' => 'DeckCards', 'action' => 'index', $deck->id]); ?>">
         <div class="row">
           <div class="col-md-12 col-xs-12">
-              <h4>
+              <h4 class="h4-deck-title">
                   <?= h($deck->name) ?>
               </h4>
           </div>
         </div>
+        </a>
         <div class="row">
           <div class="col-md-12 col-xs-12">
               <?= h($deck->memo) ?>
           </div>
         </div>
-        </a>
         <div class="footer">
           <hr />
           <div class="stats">
