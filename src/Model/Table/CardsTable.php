@@ -310,7 +310,13 @@ class CardsTable extends Table
             $saveData->loyalty = $card->loyalty; //PWのみ。忠誠度
         }
         //rulings saveするか要検討 クリーチャーにはない ->Saveしない。
-        $saveData = $this->setForeignNamesData($saveData, $card->foreignNames);
+        if (isset($card->foreignNames)) {
+            $saveData = $this->setForeignNamesData($saveData, $card->foreignNames);
+        } else {
+            $saveData->name = '';
+            $saveData->image_url = '';
+            $saveData->jp_multiverseid = '';
+        }
         $saveData->printings = implode(',', $card->printings); //配列をカンマ区切りに。
         if (isset($card->originalText)) {
             $saveData->original_text = $card->originalText;
