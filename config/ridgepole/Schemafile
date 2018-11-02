@@ -62,7 +62,7 @@ add_index :cards, :set
 add_index :cards, :power
 add_index :cards, :toughness
 add_index :cards, :commander
-add_index :cards, :block
+add_index :cards, :modern
 add_index :cards, :legacy
 add_index :cards, :standard
 add_index :cards, :vintage
@@ -120,6 +120,18 @@ create_table "users", force: :true do |t|
   t.text   "name",                             comment:"名称"
   t.text   "loginid",                             comment:"ログインID"
   t.text   "password",                             comment:"パスワード"
+
+  t.datetime "deleted",                         comment:"削除フラグ"
+  t.datetime "created",                         comment:"登録日時"
+  t.datetime "modified",                        comment:"更新日時"
+end
+
+# ほしいものリスト
+create_table "wants", force: :true do |t|
+  t.integer   "user_id",                             comment:"ユーザーid"
+  t.integer   "deck_id",                             comment:"カードid"
+  t.integer   "card_id",                             comment:"カードid"
+  t.integer   "count",                             comment:"枚数"
 
   t.datetime "deleted",                         comment:"削除フラグ"
   t.datetime "created",                         comment:"登録日時"

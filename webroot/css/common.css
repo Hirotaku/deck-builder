@@ -168,3 +168,7 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.list-card-content {
+  padding-top: 5px!important;
+}
