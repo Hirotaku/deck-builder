@@ -17,9 +17,15 @@ use App\Statics\UserInfo;
         </li>
         <li class="active">
             <a href="<?= $this->Url->build(['controller' => 'Decks', 'action' => 'index', UserInfo::$user['id']]); ?>">
-                <i class="ti-agenda"></i>
+                <i class="ti-clipboard"></i>
                 <p>Deck List</p>
             </a>
+        </li>
+        <li>
+          <a href="<?= $this->Url->build(['controller' => 'Wants', 'action' => 'index', UserInfo::$user['id']]); ?>">
+            <i class="ti-wallet"></i>
+            <p>WANTS List</p>
+          </a>
         </li>
         <li>
             <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'edit', UserInfo::$user['id']]); ?>">

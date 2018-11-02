@@ -10,6 +10,7 @@ use Cake\Controller\Component;
  * @property \App\Model\Table\CardsTable $Cards
  * @property \App\Model\Table\DeckCardsTable $DeckCards
  * @property \App\Model\Table\DecksTable $Decks
+ * @property \App\Model\Table\WantsTable $Wants
  * @property \App\Controller\Component\WisdumGuildComponent $WisdumGuild
  *
  * @method \App\Model\Entity\Card[] paginate($object = null, array $settings = [])
@@ -35,6 +36,7 @@ class CardsController extends AppController
         ]);
         $this->loadModel('DeckCards');
         $this->loadModel('Decks');
+        $this->loadModel('Wants');
         $this->loadComponent('WisdumGuild');
     }
 
@@ -81,6 +83,7 @@ class CardsController extends AppController
     public function view($deckId, $cardId)
     {
         $deck = $this->Decks->get($deckId);
+        $userId = $deck->user_id;
 
         $card = $this->Cards->get($cardId, [
             'contain' => ['DeckCards']
@@ -88,15 +91,15 @@ class CardsController extends AppController
 
         $counts = $this->DeckCards->getCounts($deckId, $cardId);
 
-
         //値段取得
         $prices = $this->WisdumGuild->getPrices($card->en_name);
+        $wants = $this->Wants->getThisCard($cardId, $userId, $deckId);
 
         //todo: 両面の場合、表示ctpを切り替える。裏面側を取得する。
         //todo: 裏面を選択しても、表面で表示する必要がある。
 
-        $this->Pack->set(compact('deckId', 'cardId'));
-        $this->set(compact('card', 'counts', 'deck', 'prices'));
+        $this->Pack->set(compact('deckId', 'cardId', 'userId'));
+        $this->set(compact('card', 'counts', 'deck', 'prices', 'wants', 'userId'));
         $this->set('_serialize', ['card']);
     }
 
