@@ -105,4 +105,9 @@ class CardConsts
         self::RARITY_MYTHIC_RARE => '神話レア',
     ];
 
+    //Wisdum Guild関連
+    const LOWEST_PRICE_KEY = 0; // 0 => 最安
+    const AVERAGE_PRICE_KEY = 1; // 1 => 平均
+    const LOWEST_PRICE_IN_SOLD_OUT_KEY = 2; // 2 => 売り消れ含む最安
+    const HIGHEST_PRICE_KEY = 3; // 3 => 最高額
 }

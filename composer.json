@@ -25,7 +25,8 @@
         "k1low/ginq-csv": "^0.9.4",
         "phpoffice/phpexcel":"*",
         "satthi/contents-file": "*",
-        "mtgsdk/mtgsdk":"dev-master"
+        "mtgsdk/mtgsdk":"dev-master",
+        "fabpot/goutte": "^3.2"
     },
     "require-dev": {
         "cakephp/bake": "~1.1",
