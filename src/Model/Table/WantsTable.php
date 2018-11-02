@@ -117,4 +117,26 @@ class WantsTable extends Table
 
         return $wants;
     }
+
+
+    /**
+     * ユーザーのwantsをすべて取得
+     *
+     * @param $userId
+     * @return \Cake\Datasource\ResultSetInterface
+     */
+    public function getMyWants($userId)
+    {
+        return $this->find()
+            ->where([
+                'Wants.user_id' => $userId
+            ])
+            ->contain([
+                'Decks','Cards'
+            ])
+            ->order([
+                'Cards.id' => 'ASC'
+            ])
+            ->all();
+    }
 }

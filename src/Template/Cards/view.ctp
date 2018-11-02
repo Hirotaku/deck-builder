@@ -158,11 +158,14 @@ use App\Consts\CardConsts;
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-6 text-center">
+  <div class="col-xs-4 text-center">
     <a class="btn" href="#" onclick="javascript:window.history.back(-1);return false;">検索結果へ</a>
   </div>
-  <div class="col-xs-6 text-center">
-        <?= $this->Html->link(__('リストへ'), ['controller' => 'DeckCards', 'action' => 'index', $deck->id], ['class' => 'btn btn-default']) ?>
+  <div class="col-xs-4 text-center">
+    <?= $this->Html->link(__('リストへ'), ['controller' => 'DeckCards', 'action' => 'index', $deck->id], ['class' => 'btn btn-default']) ?>
+  </div>
+  <div class="col-xs-4 text-center">
+    <?= $this->Html->link(__('WANTSへ'), ['controller' => 'Wants', 'action' => 'index', $userId], ['class' => 'btn btn-default']) ?>
   </div>
 </div>
 

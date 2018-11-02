@@ -172,3 +172,18 @@ body {
 .list-card-content {
   padding-top: 5px!important;
 }
+
+.h3-deck-name {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.h5-subtitle-main {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.div-card-price {
+  text-align: right;
+  color: #66615b;
+}

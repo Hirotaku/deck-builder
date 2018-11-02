@@ -1,13 +1,13 @@
-<h3><?= $deck->name ?></h3>
+<h3 class="h3-deck-name"><?= $deck->name ?></h3>
 <div class="row">
+  <div class="col-xs-8">
+    <h5 class="h5-subtitle-main">- メイン(<?= $counts['total'] ?>) -</h5>
+  </div>
   <div class="col-xs-4">
       <?= $this->Html->link(__('Search Cards'), ['controller' => 'Cards', 'action' => 'searchIndex', $deck->id], ['class' => 'btn btn-sm btn-warning']) ?>
   </div>
-  <div class="col-xs-4">
-
-  </div>
 </div>
-<h5>- メイン(<?= $counts['total'] ?>) -</h5>
+
 <h6>クリーチャー(<?= $counts['creatures'] ?>)</h6>
 <?= $this->partial('deck_card_list', ['deck' => $deck, 'deckCards' => $mainDeckCreatures]);?>
 

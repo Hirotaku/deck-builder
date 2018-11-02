@@ -91,7 +91,6 @@ class CardsController extends AppController
 
         $counts = $this->DeckCards->getCounts($deckId, $cardId);
 
-
         //値段取得
         $prices = $this->WisdumGuild->getPrices($card->en_name);
         $wants = $this->Wants->getThisCard($cardId, $userId, $deckId);
@@ -100,7 +99,7 @@ class CardsController extends AppController
         //todo: 裏面を選択しても、表面で表示する必要がある。
 
         $this->Pack->set(compact('deckId', 'cardId', 'userId'));
-        $this->set(compact('card', 'counts', 'deck', 'prices', 'wants'));
+        $this->set(compact('card', 'counts', 'deck', 'prices', 'wants', 'userId'));
         $this->set('_serialize', ['card']);
     }
 

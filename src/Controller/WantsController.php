@@ -2,30 +2,53 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Consts\CardConsts;
 
 /**
  * Wants Controller
  *
  * @property \App\Model\Table\WantsTable $Wants
+ * @property \App\Controller\Component\WisdumGuildComponent $WisdumGuild
  *
  * @method \App\Model\Entity\Want[] paginate($object = null, array $settings = [])
  */
 class WantsController extends AppController
 {
+    /**
+     * initialize
+     *
+     * @author hirosawa
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadComponent('WisdumGuild');
+    }
 
     /**
      * Index method
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
+    public function index($userId)
     {
-        $this->paginate = [
-            'contain' => ['Users', 'Decks', 'Cards']
-        ];
-        $wants = $this->paginate($this->Wants);
+        $wants = $this->Wants->getMyWants($userId);
 
-        $this->set(compact('wants'));
+        //各カードの値段取得
+        $prices = [];
+        $totalPrice = 0;
+        foreach ($wants as $want) {
+            $price = $this->WisdumGuild->getPrices($want->card->en_name);
+            $prices[$want->card_id]['price'] = $price[CardConsts::AVERAGE_PRICE_KEY];
+            $countPrice = $want->count * intval(str_replace(',', '', $price[CardConsts::AVERAGE_PRICE_KEY]));
+            $prices[$want->card_id]['countPrice'] = number_format($countPrice);
+            $totalPrice = $totalPrice + $countPrice;
+        }
+
+        $totalPrice = number_format($totalPrice);
+        $this->set(compact('wants', 'prices', 'totalPrice'));
         $this->set('_serialize', ['wants']);
     }
 
@@ -146,52 +169,4 @@ class WantsController extends AppController
 
         $this->set(true,'res');
     }
-
-//    /**
-//     * Edit method
-//     *
-//     * @param string|null $id Want id.
-//     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-//     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-//     */
-//    public function edit($id = null)
-//    {
-//        $want = $this->Wants->get($id, [
-//            'contain' => []
-//        ]);
-//        if ($this->request->is(['patch', 'post', 'put'])) {
-//            $want = $this->Wants->patchEntity($want, $this->request->getData());
-//            if ($this->Wants->save($want)) {
-//                $this->Flash->success(__('The want has been saved.'));
-//
-//                return $this->redirect(['action' => 'index']);
-//            }
-//            $this->Flash->error(__('The want could not be saved. Please, try again.'));
-//        }
-//        $users = $this->Wants->Users->find('list', ['limit' => 200]);
-//        $decks = $this->Wants->Decks->find('list', ['limit' => 200]);
-//        $cards = $this->Wants->Cards->find('list', ['limit' => 200]);
-//        $this->set(compact('want', 'users', 'decks', 'cards'));
-//        $this->set('_serialize', ['want']);
-//    }
-//
-//    /**
-//     * Delete method
-//     *
-//     * @param string|null $id Want id.
-//     * @return \Cake\Http\Response|null Redirects to index.
-//     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-//     */
-//    public function delete($id = null)
-//    {
-//        $this->request->allowMethod(['post', 'delete']);
-//        $want = $this->Wants->get($id);
-//        if ($this->Wants->delete($want)) {
-//            $this->Flash->success(__('The want has been deleted.'));
-//        } else {
-//            $this->Flash->error(__('The want could not be deleted. Please, try again.'));
-//        }
-//
-//        return $this->redirect(['action' => 'index']);
-//    }
 }
