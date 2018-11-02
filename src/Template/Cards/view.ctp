@@ -105,10 +105,10 @@ use App\Consts\CardConsts;
           <div class="col-xs-6">
             <div class="row">
               <div class="col-xs-12">
-                <p><?= __('平均価格：') ?><?= $prices[CardConsts::AVERAGE_PRICE_KEY] ?><?= __('円')  ?></p>
+                <p><?= __('平均：') ?><?= $prices[CardConsts::AVERAGE_PRICE_KEY] ?><?= __('円')  ?></p>
               </div>
               <div class="col-xs-12">
-                <p><?= __('最安価格：') ?><?= $prices[CardConsts::LOWEST_PRICE_KEY] ?><?= __('円')  ?></p>
+                <p><?= __('最安：') ?><?= $prices[CardConsts::LOWEST_PRICE_KEY] ?><?= __('円')  ?></p>
               </div>
             </div>
           </div>
