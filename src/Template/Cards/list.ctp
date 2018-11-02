@@ -5,11 +5,11 @@
       <div class="col-xs-6">
         <h4 class="search-h4"><?= __('Search Result');?></h4>
       </div>
-      <div class="col-xs-3">
-          <?= $this->Html->link(__('検索へ'), ['action' => 'search_index', $deckId], ['class' => 'btn btn-info']) ?>
+      <div class="col-xs-2">
+          <?= $this->Html->link(__('検索へ'), ['action' => 'search_index', $deckId], ['class' => 'btn btn-info btn-sm']) ?>
       </div>
-      <div class="col-xs-3">
-          <?= $this->Html->link(__('リストへ'), ['controller' => 'DeckCards', 'action' => 'index', $deckId], ['class' => 'btn btn-default']) ?>
+      <div class="col-xs-4">
+          <?= $this->Html->link(__('リストへ'), ['controller' => 'DeckCards', 'action' => 'index', $deckId], ['class' => 'btn btn-default btn-sm']) ?>
       </div>
     </div>
   </div>
