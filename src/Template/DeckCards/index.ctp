@@ -9,10 +9,10 @@ if ($this->request->action == 'publicList') {
   <h5 class="h3-deck-name">user: <?= $deck->user->name ?></h5>
 <?php endif; ?>
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-xs-5">
     <h5 class="h5-subtitle-main">- メイン(<?= $counts['total'] ?>) -</h5>
   </div>
-  <div class="col-xs-3">
+  <div class="col-xs-4">
       <?php if (!$public): ?>
         <?php if ($deck->public_flag): ?>
               <?= $this->Form->postLInk(__('非公開にする'), ['controller' => 'Decks', 'action' => 'notPublic', $deck->id], ['class' => 'btn btn-sm btn-primary', 'confirm' => '非公開にしてよろしいですか？']) ?>
