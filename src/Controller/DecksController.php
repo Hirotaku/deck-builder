@@ -115,4 +115,49 @@ class DecksController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    /**
+     * 公開リスト一覧
+     */
+    public function publicIndex()
+    {
+        //todo: 検索欲しい
+
+        $query = $this->Decks->find()
+            ->where(['Decks.public_flag' => true])
+            ->contain(['Users'])
+            ->order(['Decks.modified' => 'DESC']);
+        $decks = $this->paginate($query, ['limit' => 5]);
+
+        $this->set(compact('decks'));
+        $this->set('_serialize', ['decks']);
+    }
+
+    public function allowPublic($id)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $deck = $this->Decks->get($id);
+
+        $deck->public_flag = true;
+
+        if ($this->Decks->save($deck)) {
+            $this->Flash->success(__('公開しました。'));
+
+            return $this->redirect(['controller' => 'DeckCards', 'action' => 'index', $id]);
+        }
+    }
+
+    public function notPublic($id)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $deck = $this->Decks->get($id);
+
+        $deck->public_flag = false;
+
+        if ($this->Decks->save($deck)) {
+            $this->Flash->success(__('非公開にしました。'));
+
+            return $this->redirect(['controller' => 'DeckCards', 'action' => 'index', $id]);
+        }
+    }
 }

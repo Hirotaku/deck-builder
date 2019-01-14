@@ -187,3 +187,10 @@ body {
   text-align: right;
   color: #66615b;
 }
+
+.label-public {
+  color: white !important;
+  background-color: #1ac552;
+  padding-left: 5px;
+  padding-right: 5px;
+}

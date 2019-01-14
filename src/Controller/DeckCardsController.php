@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use App\Model\Table\DeckCardsTable;
 use App\Consts\DeckCardConsts;
 use App\Model\Table\DecksTable;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * DeckCards Controller
@@ -36,7 +37,18 @@ class DeckCardsController extends AppController
     public function index($deckId)
     {
         $deck = $this->Decks->get($deckId);
+        //リスト登録されたカードの呼び出し
+        $this->setDeckCards($deckId);
 
+        $this->set(compact('deck'));
+    }
+
+    /**
+     * デッキリスト登録カードの呼び出し
+     * @param $deckId
+     */
+    private function setDeckCards($deckId)
+    {
         $mainDeckCreatures = $this->DeckCards->getMainDeckCreatures($deckId);
         $mainDeckSpells = $this->DeckCards->getMainDeckSpells($deckId);
         $mainDeckLands = $this->DeckCards->getMainDeckLands($deckId);
@@ -52,11 +64,10 @@ class DeckCardsController extends AppController
         $counts['total'] = $counts['creatures'] + $counts['spells'] + $counts['lands'];
 
         $this->set(compact(
-            'deck', 'mainDeckCreatures',
+            'mainDeckCreatures',
             'mainDeckSpells', 'mainDeckLands', 'sideBoards',
             'stocks', 'counts'
         ));
-        $this->set('_serialize', ['deckCards']);
     }
 
     /**
@@ -210,6 +221,29 @@ class DeckCardsController extends AppController
 
         $this->Pack->set(compact('deckId', 'basicLandIds'));
         $this->set(compact('deck', 'counts', 'basicLandIds'));
+    }
+
+    /**
+     * デッキリストの公開
+     * @param $deckId
+     */
+    public function publicList($deckId)
+    {
+        $deck = $this->Decks->get($deckId, [
+            'contain' => 'Users'
+        ]);
+
+        if (!$deck->public_flag) {
+            $this->Flash->error('このリストは公開されていません');
+            return $this->redirect(['controller' => 'decks', 'action' => 'index']);
+        }
+
+        //リスト登録されたカードの呼び出し
+        $this->setDeckCards($deckId);
+
+        $this->set(compact('deck'));
+
+        $this->render('index');
     }
 
 }
