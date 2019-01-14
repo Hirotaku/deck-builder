@@ -9,7 +9,7 @@ if ($this->request->action == 'publicList') {
   <h5 class="h3-deck-name">user: <?= $deck->user->name ?></h5>
 <?php endif; ?>
 <div class="row">
-  <div class="col-xs-4">
+  <div class="col-xs-6">
     <h5 class="h5-subtitle-main">- メイン(<?= $counts['total'] ?>) -</h5>
   </div>
   <div class="col-xs-3">
@@ -23,7 +23,7 @@ if ($this->request->action == 'publicList') {
   </div>
   <div class="col-xs-3">
       <?php if (!$public): ?>
-      <?= $this->Html->link(__('Search Cards'), ['controller' => 'Cards', 'action' => 'searchIndex', $deck->id], ['class' => 'btn btn-sm btn-warning']) ?>
+      <?= $this->Html->link(__('検索'), ['controller' => 'Cards', 'action' => 'searchIndex', $deck->id], ['class' => 'btn btn-sm btn-warning']) ?>
       <?php endif; ?>
   </div>
 </div>
