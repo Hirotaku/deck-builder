@@ -3,10 +3,7 @@ use App\Consts\DeckConsts;
 ?>
 <div class="row">
   <div class="col-xs-8">
-    <h3>Deck Lists</h3>
-  </div>
-  <div class="col-xs-4">
-      <?= $this->Html->link(__('New Deck'), ['controller' => 'Decks', 'action' => 'add'], ['class' => 'btn btn-sm btn-warning mgtp-20']) ?>
+    <h3>Public Deck Lists</h3>
   </div>
 </div>
 <?php foreach ($decks as $deck): ?>
@@ -19,12 +16,10 @@ use App\Consts\DeckConsts;
             <label class="label-<?= DeckConsts::FORMAT_COLUMN_LISTS[$deck->format]; ?>"><?= DeckConsts::FORMAT_VIEW_LISTS[$deck->format]; ?></label>
           </div>
           <div class="col-md-12 col-xs-6">
-            <?php if ($deck->public_flag): ?>
-              <label class="label-public">公開中</label>
-            <?php endif; ?>
+              user: <?= $deck->user->name ?>
           </div>
         </div>
-        <a href="<?= $this->Url->build(['controller' => 'DeckCards', 'action' => 'index', $deck->id]); ?>">
+        <a href="<?= $this->Url->build(['controller' => 'DeckCards', 'action' => 'publicList', $deck->id]); ?>">
         <div class="row">
           <div class="col-md-12 col-xs-12">
               <h4 class="h4-deck-title">
@@ -36,13 +31,6 @@ use App\Consts\DeckConsts;
         <div class="row">
           <div class="col-md-12 col-xs-12">
               <?= h($deck->memo) ?>
-          </div>
-        </div>
-        <div class="footer">
-          <hr />
-          <div class="stats">
-            <i class="ti-reload"></i> <?= $this->Html->link(__('Name Edit'), ['action' => 'edit', $deck->id]) ?>
-            <i class="ti-trash"></i> <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $deck->id], ['confirm' => __('削除してもよろしいですか？', $deck->id)]) ?>
           </div>
         </div>
       </div>

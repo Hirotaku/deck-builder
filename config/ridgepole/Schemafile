@@ -94,6 +94,7 @@ create_table "decks", force: :true do |t|
   t.integer  "user_id",                     comment:"デッキid"
   t.text   "memo",                        comment:"メモ"
   t.integer   "format",                        comment:"フォーマット"
+  t.boolean   "public_flag", default:false,     comment:"公開フラグ"
 
 
   t.datetime "deleted",                         comment:"削除フラグ"

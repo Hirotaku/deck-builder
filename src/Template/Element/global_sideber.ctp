@@ -22,6 +22,12 @@ use App\Statics\UserInfo;
             </a>
         </li>
         <li>
+          <a href="<?= $this->Url->build(['controller' => 'Decks', 'action' => 'publicIndex', UserInfo::$user['id']]); ?>">
+            <i class="ti-world"></i>
+            <p>Public Deck List</p>
+          </a>
+        </li>
+        <li>
           <a href="<?= $this->Url->build(['controller' => 'Wants', 'action' => 'index', UserInfo::$user['id']]); ?>">
             <i class="ti-wallet"></i>
             <p>WANTS List</p>
