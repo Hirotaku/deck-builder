@@ -96,7 +96,7 @@ class CardConsts
     const RARITY_COMMON = 'Common';
     const RARITY_UNCOMMON = 'Uncommon';
     const RARITY_RARE = 'Rare';
-    const RARITY_MYTHIC_RARE = 'Mythic Rare';
+    const RARITY_MYTHIC_RARE = 'Mythic';
 
     const LIST_RARITY = [
         self::RARITY_COMMON => 'コモン',

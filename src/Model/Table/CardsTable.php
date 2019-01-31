@@ -229,8 +229,10 @@ class CardsTable extends Table
             ->add('types', 'Search.value', [
                 'multiValue' => true,
             ])
-            ->add('rarity', 'Search.value', [
+            ->like('rarity', [
                 'multiValue' => true,
+                'before' => true,
+                'after' => true,
             ])
             ->value('set', [
 //                'multiValue' => true,
