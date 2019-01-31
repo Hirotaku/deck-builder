@@ -14,7 +14,7 @@ use App\Consts\CardConsts;
     <div class="card">
       <div class="content">
         <div class="row">
-          <div class="col-xs-8 col-xs-offset-2">
+          <div class="col-xs-8 col-xs-offset-1">
             <img src="<?= $card->image_url?>" class="card-view-img">
           </div>
         </div>
