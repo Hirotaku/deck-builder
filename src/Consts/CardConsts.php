@@ -10,6 +10,7 @@ class CardConsts
     //マナシンボル画像パス
     const FILEPATH_IMG_MANASYMBOLE = 'mana_symbols/';
 
+    const IMG_MANASYMBOLE_0 = '0.jpg';
     const IMG_MANASYMBOLE_1 = '1.jpg';
     const IMG_MANASYMBOLE_2 = '2.jpg';
     const IMG_MANASYMBOLE_3 = '3.jpg';
@@ -32,7 +33,19 @@ class CardConsts
     const IMG_MANASYMBOLE_RED = 'red.jpg';
     const IMG_MANASYMBOLE_GREEN = 'green.jpg';
 
+    const IMG_MANASYMBOLE_WHITE_BLUE = 'white_blue.jpg';
+    const IMG_MANASYMBOLE_WHITE_BLACK = 'white_black.jpg';
+    const IMG_MANASYMBOLE_WHITE_RED = 'white_red.jpg';
+    const IMG_MANASYMBOLE_WHITE_GREEN = 'white_green.jpg';
+    const IMG_MANASYMBOLE_BLUE_BLACK = 'blue_black.jpg';
+    const IMG_MANASYMBOLE_BLUE_RED = 'blue_red.jpg';
+    const IMG_MANASYMBOLE_BLUE_GREEN = 'blue_green.jpg';
+    const IMG_MANASYMBOLE_BLACK_RED = 'black_red.jpg';
+    const IMG_MANASYMBOLE_BLACK_GREEN = 'black_green.jpg';
+    const IMG_MANASYMBOLE_RED_GREEN = 'red_green.jpg';
+
     const LIST_MANASYMBOLE_IMG = [
+       '0' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_0,
        '1' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_1,
        '2' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_2,
        '3' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_3,
@@ -52,6 +65,22 @@ class CardConsts
        'B' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_BLACK,
        'R' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_RED,
        'G' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_GREEN,
+       'X' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_X,
+        //混生マナ
+        'W/U' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_WHITE_BLUE,
+        'W/B' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_WHITE_BLACK,
+        'R/W' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_WHITE_RED,
+        'G/W' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_WHITE_GREEN,
+
+        'U/B' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_BLUE_BLACK,
+        'U/R' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_BLUE_RED,
+        'U/G' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_BLUE_GREEN,
+
+        'B/G' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_BLACK_RED,
+        'B/R' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_BLACK_GREEN,
+
+        'R/G' => self::FILEPATH_IMG_MANASYMBOLE . self::IMG_MANASYMBOLE_RED_GREEN,
+
     ];
 
     //検索画面でのセレクトボックス要素等
