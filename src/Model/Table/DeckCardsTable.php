@@ -143,7 +143,7 @@ class DeckCardsTable extends Table
             ->where([
                 'DeckCards.deck_id' => $deckId,
                 'DeckCards.board' => DeckCardConsts::MAIN_BOARD_ID,
-                'Cards.types' => 'Creature'
+                'Cards.types LIKE' => '%Creature%'
             ])
             ->contain(['Cards'])
             ->order(['Cards.cmc' => 'ASC'])
@@ -163,7 +163,8 @@ class DeckCardsTable extends Table
             ->where([
                 'DeckCards.deck_id' => $deckId,
                 'DeckCards.board' => DeckCardConsts::MAIN_BOARD_ID,
-                'Cards.types NOT IN' => ['Creature', 'Land']
+                'Cards.types NOT LIKE' => '%Creature%',
+                'Cards.types NOT IN' => 'Land'
             ])
             ->contain(['Cards'])
             ->order(['Cards.cmc' => 'ASC'])
