@@ -47,17 +47,24 @@ class ApiController extends AppController
         $cards = mtgsdk\Card::where(['set' => $set])
 //            ->where(['rarity' => 'Mythic Rare'])
             ->all();
-
+//        debug($cards);exit;
         //データを保存可能な形に成形していく
         $result = true;
         foreach ($cards as $card) {
+//            debug($card);exit;
+
+            //日本語限定アートへの対応
+            if (!isset($card->multiverseid) && !isset($card->imageUrl)) {
+                //レコード重複となるので無視する。
+                continue;
+            }
+
             //$card は object
             $saveData = $this->Cards->makeSaveData($card);
 
             if(!$this->Cards->save($saveData)) {
 
                 $result = false;
-
             }
 
         }
