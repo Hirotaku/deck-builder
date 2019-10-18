@@ -7,6 +7,10 @@
   <?php endif; ?>
     <?= $this->Html->link(__('リストへ'), ['controller' => 'DeckCards', 'action' => 'index', $deckId], ['class' => 'btn btn-sm btn-default']) ?>
 </div>
+<p class="small">
+  ※基本土地の絵柄を変更したい場合は、<br>
+  通常カードと同様に検索して追加してください。
+</p>
 <br>
 
 <?= $this->partial('import_list', ['cards' => $mainDeckCreatures, 'lang' => $lang])  ?>
