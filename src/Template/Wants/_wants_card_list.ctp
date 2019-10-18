@@ -19,11 +19,19 @@
       </div>
       <div class="col-xs-2 image-col" style="">
         <div class="image-div">
-          <img src="<?= $deckCard->card->image_url?>" class="">
+          <?php if (empty($deckCard->card->image_url)): ?>
+            <img src="<?= $deckCard->card->en_image_url?>" class="">
+          <?php else: ?>
+            <img src="<?= $deckCard->card->image_url?>" class="">
+          <?php endif; ?>
         </div>
       </div>
       <div class="col-xs-5 div-card-name">
-          <?= $deckCard->card->name; ?>
+          <?php if (empty($deckCard->card->name)): ?>
+              <?= $deckCard->card->en_name; ?>
+          <?php else: ?>
+              <?= $deckCard->card->name; ?>
+          <?php endif; ?>
       </div>
       <div class="col-xs-2 div-card-price">
           <?= $prices[$deckCard->card_id]['price']; ?>

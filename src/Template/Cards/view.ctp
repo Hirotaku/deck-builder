@@ -5,7 +5,11 @@ use App\Consts\CardConsts;
 <div class="row">
   <div class="col-xs-12">
     <h4 class="h4-card-title">
-        <?= $card->name?>
+        <?php if (empty($card->name)): ?>
+            <?= $card->en_name?>
+        <?php else: ?>
+            <?= $card->name?>
+        <?php endif; ?>
     </h4>
   </div>
 </div>
@@ -15,7 +19,11 @@ use App\Consts\CardConsts;
       <div class="content">
         <div class="row">
           <div class="col-xs-8 col-xs-offset-1">
-            <img src="<?= $card->image_url?>" class="card-view-img">
+              <?php if (empty($card->image_url)): ?>
+                <img src="<?= $card->en_image_url?>" class="card-view-img">
+              <?php else: ?>
+                <img src="<?= $card->image_url?>" class="card-view-img">
+              <?php endif; ?>
           </div>
         </div>
         <hr />

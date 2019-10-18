@@ -45,22 +45,30 @@
     </div>
   </div>
 
-  <div class="col-xs-12">
+  <div class="col-xs-12 col-lg-12">
     <div class="row">
     <?php foreach ($cards as $card): ?>
-      <div class="col-xs-6">
+      <div class="col-xs-6 col-lg-3">
         <div class="card list-card">
           <div class="content list-card-content">
             <a href="<?= $this->Url->build(['controller' => 'Cards', 'action' => 'view', $deckId, $card->id]); ?>">
             <div class="row">
               <div class="col-xs-offset-3 col-xs-6">
-                <img src="<?= $card->image_url?>" width="100%">
+                <?php if (empty($card->image_url)): ?>
+                  <img src="<?= $card->en_image_url?>" width="100%">
+                <?php else: ?>
+                  <img src="<?= $card->image_url?>" width="100%">
+                <?php endif; ?>
               </div>
             </div>
             <div class="footer list-footer">
               <hr />
               <div class="stats fs-xs">
+                <?php if (empty($card->name)): ?>
+                  <?= h($this->Text->truncate($card->en_name ?? '', 10)); ?>
+                <?php else: ?>
                   <?= h($this->Text->truncate($card->name ?? '', 10)); ?>
+                <?php endif; ?>
               </div>
             </div>
             </a>
