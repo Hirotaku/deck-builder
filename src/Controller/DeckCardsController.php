@@ -246,4 +246,24 @@ class DeckCardsController extends AppController
         $this->render('index');
     }
 
+    /**
+     * アリーナ用インポートコードリスト表示
+     *
+     * @param $deckId
+     * @param $lang
+     */
+    public function importCode($deckId, $lang)
+    {
+        //リスト登録されたカードの呼び出し
+        $this->setDeckCards($deckId);
+
+        $this->set(compact('deck', 'deckId'));
+
+        if ($lang == 'jp') {
+            $this->render('import_code');
+        } elseif ($lang == 'en') {
+            $this->render('import_code_english');
+        }
+    }
+
 }
