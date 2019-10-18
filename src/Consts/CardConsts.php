@@ -139,4 +139,97 @@ class CardConsts
     const AVERAGE_PRICE_KEY = 1; // 1 => 平均
     const LOWEST_PRICE_IN_SOLD_OUT_KEY = 2; // 2 => 売り消れ含む最安
     const HIGHEST_PRICE_KEY = 3; // 3 => 最高額
+
+    //アリーナデッキコード出力時の分割カード名前補完
+    const HALFCARDS_NAME_LIST = [
+        //GRN
+        '発見' => '発見 // 発散',
+        '発散' => '発見 // 発散',
+        '反転' => '反転 // 観点',
+        '観点' => '反転 // 観点',
+        '席次' => '席次 // 石像',
+        '石像' => '席次 // 石像',
+        '完全' => '完全 // 間隙',
+        '間隙' => '完全 // 間隙',
+        '開花' => '開花 // 華麗',
+        '華麗' => '開花 // 華麗',
+        '詭謀' => '詭謀 // 奇策',
+        '奇策' => '詭謀 // 奇策',
+        '発展' => '発展 // 発破',
+        '発破' => '発展 // 発破',
+        '採取' => '採取 // 最終',
+        '最終' => '採取 // 最終',
+        '反応' => '反応 // 反正',
+        '反正' => '反応 // 反正',
+        '確証' => '確証 // 確率',
+        '確率' => '確証 // 確率',
+        //RNA
+        '解任' => '解任 // 開展',
+        '開展' => '解任 // 開展',
+        '昇華' => '昇華 // 消耗',
+        '消耗' => '昇華 // 消耗',
+        '興行' => '興行 // 叩打',
+        '叩打' => '興行 // 叩打',
+        '争闘' => '争闘 // 壮大',
+        '壮大' => '争闘 // 壮大',
+        '孵化' => '孵化 // 不和',
+        '不和' => '孵化 // 不和',
+        '万全' => '万全 // 番人',
+        '番人' => '万全 // 番人',
+        '回生' => '回生 // 会稽',
+        '会稽' => '回生 // 会稽',
+        '豪奢' => '豪奢 // 誤認',
+        '誤認' => '豪奢 // 誤認',
+        '強撃' => '強撃 // 脅威',
+        '脅威' => '強撃 // 脅威',
+        '覆滅' => '覆滅 // 複製',
+        '複製' => '覆滅 // 複製',
+    ];
+
+    const HALFCARDS_NAME_LIST_EN = [
+        //GRN
+        'Discovery' => 'Discovery // Dispersal',
+        'Dispersal' => 'Discovery // Dispersal',
+        'Invert' => 'Invert // Invent',
+        'Invent' => 'Invert // Invent',
+        'Status' => 'Status // Statue',
+        'Statue' => 'Status // Statue',
+        'Integrity' => 'Integrity // Intervention',
+        'Intervention' => 'Integrity // Intervention',
+        'Flower' => 'Flower // Flourish',
+        'Flourish' => 'Flower // Flourish',
+        'Connive' => 'Connive // Concoct',
+        'Concoct' => 'Connive // Concoct',
+        'Expansion' => 'Expansion // Explosion',
+        'Explosion' => 'Expansion // Explosion',
+        'Find' => 'Find // Finality',
+        'Finality' => 'Find // Finality',
+        'Response' => 'Response // Resurgence',
+        'Resurgence' => 'Response // Resurgence',
+        'Assure' => 'Assure // Assemble',
+        'Assemble' => 'Assure // Assemble',
+        //RNA
+        'Depose' => 'Depose // Deploy',
+        'Deploy' => 'Depose // Deploy',
+        'Consecrate' => 'Consecrate // Consume',
+        'Consume' => 'Consecrate // Consume',
+        'Carnival' => 'Carnival // Carnage',
+        'Carnage' => 'Carnival // Carnage',
+        'Collision' => 'Collision // Colossus',
+        'Colossus' => 'Collision // Colossus',
+        'Incubation' => 'Incubation // Incongruity',
+        'Incongruity' => 'Incubation // Incongruity',
+        'Warrant' => 'Warrant // Warden',
+        'Warden' => 'Warrant // Warden',
+        'Revival' => 'Revival // Revenge',
+        'Revenge' => 'Revival // Revenge',
+        'Bedeck' => 'Bedeck // Bedazzle',
+        'Bedazzle' => 'Bedeck // Bedazzle',
+        'Thrash' => 'Thrash // Threat',
+        'Threat' => 'Thrash // Threat',
+        'Repudiate' => 'Repudiate // Replicate',
+        'Replicate' => 'Repudiate // Replicate'
+
+
+    ];
 }

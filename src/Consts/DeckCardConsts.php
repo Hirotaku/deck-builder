@@ -13,6 +13,7 @@ class DeckCardConsts
     const STOCK_BOARD_ID = 3;
 
     //基本土地カードid
+    //※191018 基本土地のIDをアリーナコードのためにELDのものに変更
     const PLAIN_CARD_ID = 15678;
     const ISLAND_CARD_ID = 15610;
     const SWAMP_CARD_ID = 15745;
