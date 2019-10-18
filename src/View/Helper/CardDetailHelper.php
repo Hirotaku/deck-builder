@@ -48,4 +48,26 @@ class CardDetailHelper extends Helper
         return $manaSymbolImgPaths;
     }
 
+    public function cardNameForImportCode($cardData, $lang)
+    {
+        $name = $cardData->name;
+        $set = $cardData->set;
+        $number = $cardData->number;
+        $targetHalfCardList = CardConsts::HALFCARDS_NAME_LIST;
+
+        if ($lang == 'en') {
+            $name = $cardData->en_name;
+            $targetHalfCardList = CardConsts::HALFCARDS_NAME_LIST_EN;
+        }
+
+        //分割カードの場合、名前を補完する
+        if (array_key_exists($name, $targetHalfCardList)) {
+            $name = $targetHalfCardList[$name];
+            $number = substr($number, 0, -1); //文字列最後についているa,bの表記を削る
+        }
+
+        $string = $name . ' (' . $set . ') ' . $number;
+        return $string;
+    }
+
 }

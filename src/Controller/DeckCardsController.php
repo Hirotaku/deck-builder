@@ -257,13 +257,7 @@ class DeckCardsController extends AppController
         //リスト登録されたカードの呼び出し
         $this->setDeckCards($deckId);
 
-        $this->set(compact('deck', 'deckId'));
-
-        if ($lang == 'jp') {
-            $this->render('import_code');
-        } elseif ($lang == 'en') {
-            $this->render('import_code_english');
-        }
+        $this->set(compact('deck', 'deckId', 'lang'));
     }
 
 }
