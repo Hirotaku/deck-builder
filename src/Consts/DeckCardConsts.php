@@ -13,11 +13,11 @@ class DeckCardConsts
     const STOCK_BOARD_ID = 3;
 
     //基本土地カードid
-    const PLAIN_CARD_ID = 250;
-    const ISLAND_CARD_ID = 253;
-    const SWAMP_CARD_ID = 257;
-    const MOUNTAIN_CARD_ID = 259;
-    const FOREST_CARD_ID = 262;
+    const PLAIN_CARD_ID = 15678;
+    const ISLAND_CARD_ID = 15610;
+    const SWAMP_CARD_ID = 15745;
+    const MOUNTAIN_CARD_ID = 15648;
+    const FOREST_CARD_ID = 15568;
 
     const BASIC_LAND_IDS = [
         'plain' => self::PLAIN_CARD_ID,
