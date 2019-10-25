@@ -15,10 +15,10 @@ use App\Consts\DeckConsts;
     <div class="card">
       <div class="content">
         <div class="row">
-          <div class="col-md-12 col-xs-6">
+          <div class="col-lg-3 col-xs-6">
             <label class="label-<?= DeckConsts::FORMAT_COLUMN_LISTS[$deck->format]; ?>"><?= DeckConsts::FORMAT_VIEW_LISTS[$deck->format]; ?></label>
           </div>
-          <div class="col-md-12 col-xs-6">
+          <div class="col-lg-3 col-xs-6">
             <?php if ($deck->public_flag): ?>
               <label class="label-public">公開中</label>
             <?php endif; ?>

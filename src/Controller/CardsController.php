@@ -68,7 +68,8 @@ class CardsController extends AppController
      */
     public function list($deckId)
     {
-        $query = $this->Cards->find('search', ['search' => $this->request->getQuery()]);
+        $query = $this->Cards->find('search', ['search' => $this->request->getQuery()])
+                ->order(['id' => 'DESC']);
         $this->set('cards', $this->paginate($query));
         $this->set(compact('deckId'));
     }

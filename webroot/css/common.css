@@ -146,6 +146,13 @@ body {
   padding-right: 5px;
 }
 
+.label-pioneer {
+  color: white !important;
+  background-color: #c54b78;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 .label-modern {
   color: black!important;
   background-color: #edb304;
