@@ -1,12 +1,29 @@
 <?php
+use App\Consts\DeckConsts;
+
 $public = false;
 if ($this->request->action == 'publicList') {
   $public = true;
 }
 ?>
-<h3 class="h3-deck-name"><?= $deck->name ?></h3>
+<div class="row">
+  <div class="col-lg-4 col-xs-8">
+    <h4 class="h3-deck-name"><?= $deck->name ?></h4>
+  </div>
+  <div class="col-lg-4 col-xs-4 div-format-label">
+    <label class="label-<?= DeckConsts::FORMAT_COLUMN_LISTS[$deck->format]; ?>"><?= DeckConsts::FORMAT_VIEW_LISTS[$deck->format]; ?></label>
+  </div>
+</div>
 <?php if ($public): ?>
-  <h5 class="h3-deck-name">user: <?= $deck->user->name ?></h5>
+<div class="row">
+  <div class="col-lg-4 col-xs-8">
+    <h5 class="h3-deck-name">user: <?= $deck->user->name ?></h5>
+  </div>
+  <div class="col-lg-4 col-xs-4">
+      <?= $this->Html->link(__('デッキコード'), ['controller' => 'DeckCards', 'action' => 'importCode', $deck->id, 'jp'], ['class' => 'btn btn-sm btn-default']) ?>
+  </div>
+
+</div>
 <?php endif; ?>
 <div class="row">
   <div class="col-xs-4">
