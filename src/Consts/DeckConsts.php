@@ -13,9 +13,11 @@ class DeckConsts
     const FORMAT_LEGACY = 3;
     const FORMAT_VINTAGE = 4;
     const FORMAT_COMMANDER = 5;
+    const FORMAT_PIONEER = 6;
 
     const FORMAT_LISTS = [
         self::FORMAT_STANDARD => 'スタンダード',
+        self::FORMAT_PIONEER => 'パイオニア',
         self::FORMAT_MODERN => 'モダン',
         self::FORMAT_LEGACY => 'レガシー',
         self::FORMAT_VINTAGE => 'ヴィンテージ',
@@ -28,6 +30,7 @@ class DeckConsts
         self::FORMAT_LEGACY => 'legacy',
         self::FORMAT_VINTAGE => 'vintage',
         self::FORMAT_COMMANDER => 'commander',
+        self::FORMAT_PIONEER => 'pioneer',
     ];
 
     const FORMAT_VIEW_LISTS = [
@@ -36,5 +39,6 @@ class DeckConsts
         self::FORMAT_LEGACY => 'Legacy',
         self::FORMAT_VINTAGE => 'Vintage',
         self::FORMAT_COMMANDER => 'Commander',
+        self::FORMAT_PIONEER => 'Pioneer',
     ];
 }

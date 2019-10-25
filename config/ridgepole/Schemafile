@@ -29,6 +29,7 @@ create_table "cards", force: :true do |t|
   t.text   "original_text",             comment:""
   t.text   "original_type",             comment:""
   t.boolean   "commander",             comment:""
+  t.boolean   "pioneer",     default:false,        comment:""
   t.boolean   "modern",             comment:""
   t.boolean   "legacy",             comment:""
   t.boolean   "standard",             comment:""
