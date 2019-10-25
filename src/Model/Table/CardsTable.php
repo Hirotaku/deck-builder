@@ -249,6 +249,7 @@ class CardsTable extends Table
             ->value('legacy')
             ->value('vintage')
             ->value('commander')
+            ->value('pioneer')
 
             ;
 
@@ -388,6 +389,9 @@ class CardsTable extends Table
                     break;
                 case 'Vintage': //Vintage
                     $saveData->vintage = $boolean;
+                    break;
+                case 'Pioneer': //Pioneer
+                    $saveData->pioneer = $boolean;
                     break;
             }
         }
