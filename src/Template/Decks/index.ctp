@@ -42,7 +42,7 @@ use App\Consts\DeckConsts;
           <hr />
           <div class="stats">
             <i class="ti-reload"></i> <?= $this->Html->link(__('Name Edit'), ['action' => 'edit', $deck->id]) ?>
-            <i class="ti-trash"></i> <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $deck->id], ['confirm' => __('削除してもよろしいですか？', $deck->id)]) ?>
+            <i class="ti-trash"></i> <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $deck->id], ['confirm' => __('このデッキに含まれるWANTSリストも削除されます。デッキを削除してもよろしいですか？', $deck->id)]) ?>
           </div>
         </div>
       </div>
