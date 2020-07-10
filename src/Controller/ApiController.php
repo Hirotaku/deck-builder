@@ -82,40 +82,50 @@ class ApiController extends AppController
     /**
      * getDataFromMtgJson
      *
+     * @param $setName エキスパンションの大文字略称
      */
     public function getDataFromMtgJson($setName)
     {
-        $setName = 'IKO'; //３文字略称　saveの時に使用する。
-
-        $url = 'https://mtgjson.com/api/v5/' . $setName . '.json';
-        $json = file_get_contents($url);
-        $json = mb_convert_encoding($json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
-
-        $jsonData = json_decode($json, true);
-        $cards = $jsonData['data']['cards'];
+        //JSON取得
+        $cards = $this->getJsonFromMtgJson($setName);
 
         $result = true;
         foreach ($cards as $card) {
 //            debug($card);
-
-            //日本語限定アートへの対応（灯争大戦のPW）
-            //何かしら対応いるかも？
 
             //英語のmultiverseIdが取れないものは画像が表示できないので登録しない。
             //別イラストのデータである可能性が高い。
             if (!isset($card['identifiers']['multiverseId'])) {
                 continue;
             }
+            $enMultiverseId = $card['identifiers']['multiverseId'];
 
+            //日本語オラクル配列取得
             $japaneseTexts = $this->getJapaneseTexts($card); //取得できないときは、nullになる。
 //            debug($japaneseTexts);
 
-            //☆ここで既存データがあるかチェックする機構を入れる
-            //メソッドにしてしまった方がいい
-            $beforeSaveData = $this->Cards->newEntity();
+            //データ存在チェック
+            $saveData = $this->Cards->find()
+                ->Where(['multiverseid' => $enMultiverseId])
+                ->first();
 
-            //データ成型
-            $saveData = $this->Cards->makeSaveDataForMtgJson($beforeSaveData, $setName, $card, $japaneseTexts);
+            if (empty($saveData)) {
+                //新規登録
+                $beforeSaveData = $this->Cards->newEntity();
+                //新規データ成型
+                $saveData = $this->Cards->makeSaveDataForMtgJson($beforeSaveData, $setName, $card, $japaneseTexts);
+            } else {
+                //データ登録済み
+                if (is_null($japaneseTexts)) {
+                    //日本語の更新メソッドなので、日本語情報がないものはスルー
+                    continue;
+                }
+                //日本語オラクルのみをUPDATE
+                if (isset($japaneseTexts['text'])) {
+                    $saveData->original_text = $japaneseTexts['text'];
+                }
+                $saveData->original_type = $japaneseTexts['type'];
+            }
 
             if(!$this->Cards->save($saveData)) {
 
@@ -136,8 +146,26 @@ class ApiController extends AppController
         }
     }
 
-
     /* ==================== private method =====================  */
+
+    /**
+     * MTGJSONからのJSON取得
+     *
+     * @param $setInitial エキスパンションの略称
+     * @return data
+     */
+    private function getJsonFromMtgJson($setName)
+    {
+        $url = 'https://mtgjson.com/api/v5/' . $setName . '.json';
+        $json = file_get_contents($url);
+        $json = mb_convert_encoding($json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+
+        $jsonData = json_decode($json, true);
+        $cards = $jsonData['data']['cards'];
+
+        return $cards;
+
+    }
 
     /**
      *
