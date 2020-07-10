@@ -467,16 +467,21 @@ class CardsTable extends Table
      */
     private function setJapaneseTexts($saveData, $japaneseTexts)
     {
-        $saveData->name = $japaneseTexts['name'];
+        if (isset($japaneseTexts['name'])) {
+            $saveData->name = $japaneseTexts['name'];
+        }
         //日本語通しID
-        $jpMultiverseId = $japaneseTexts['multiverseId'];
-        $saveData->jp_multiverseid = $jpMultiverseId;
-        $saveData->image_url = $this->makeImageUrl($jpMultiverseId);
+        if (isset($japaneseTexts['multiverseId'])) {
+            $jpMultiverseId = $japaneseTexts['multiverseId'];
+            $saveData->jp_multiverseid = $jpMultiverseId;
+            $saveData->image_url = $this->makeImageUrl($jpMultiverseId);
+        }
         if (isset($japaneseTexts['text'])) {
             $saveData->original_text = $japaneseTexts['text'];
         }
-        $saveData->original_type = $japaneseTexts['type'];
-
+        if (isset($japaneseTexts['type'])) {
+            $saveData->original_type = $japaneseTexts['type'];
+        }
         return $saveData;
     }
 

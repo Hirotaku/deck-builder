@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Log\Log;
 use mtgsdk;
 
 /**
@@ -124,7 +125,9 @@ class ApiController extends AppController
                 if (isset($japaneseTexts['text'])) {
                     $saveData->original_text = $japaneseTexts['text'];
                 }
-                $saveData->original_type = $japaneseTexts['type'];
+                if (isset($japaneseTexts['type'])) {
+                    $saveData->original_type = $japaneseTexts['type'];
+                }
             }
 
             if(!$this->Cards->save($saveData)) {
@@ -141,6 +144,7 @@ class ApiController extends AppController
         } else {
             $this->Flash->error('失敗しました');
             //エラーが起きた配列を表示
+            Log::error($card);
             var_dump($card);
             exit;
         }
