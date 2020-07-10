@@ -241,6 +241,18 @@ class CardsTable extends Table
                 'before' => true,
                 'after' => true,
             ])
+            ->like('original_text', [
+                'before' => true,
+                'after' => true,
+            ])
+            ->like('type', [
+                'before' => true,
+                'after' => true,
+            ])
+            ->like('original_type', [
+                'before' => true,
+                'after' => true,
+            ])
             ->value('power')
             ->value('toughness')
             //format
@@ -338,6 +350,104 @@ class CardsTable extends Table
         return $saveData;
     }
 
+    /**
+     * makeSaveDataForMtgJson
+     * 取得したカードデータを保存する形に成形
+     *
+     * @param object $card
+     * @return object
+     */
+    public function makeSaveDataForMtgJson($saveData, $setName, $card, $japaneseTexts)
+    {
+        //データセット
+        $saveData->en_name = $card['name'];
+        if (isset($card['manaCost'])) {
+            $saveData->manacost = $card['manaCost'];
+        }
+        $saveData->cmc = $card['convertedManaCost'];
+        $saveData->colors = implode(',', $card['colors']); //配列をカンマ区切りに。
+        $saveData->color_identity = implode(',', $card['colorIdentity']); //配列をカンマ区切りに。
+        $saveData->type = $card['type'];
+        $saveData->supertypes = implode(',', $card['supertypes']); //配列をカンマ区切りに。あるときないとき。
+
+        $saveData->types = implode(',', $card['types']); //配列をカンマ区切りに。
+        $saveData->subtypes = implode(',', $card['subtypes']); //配列をカンマ区切りに。　クリーチャーのみ？PWある
+
+        $saveData->rarity = $card['rarity'];
+        $saveData->set = $setName; // APIからの取得だと再録カードが複数取れてしまうので、引数からもらう。
+//        $saveData->setname = $card['']setName;
+
+        if (isset($card['text'])) {
+            $saveData->text = $card['text'];
+        }
+        if (isset($card['flavorText'])) {
+            $saveData->flavor = $card['flavorText'];
+        }
+        $saveData->artist = $card['artist'];
+        $saveData->number = $card['number'];
+        /* クリーチャーのみ */
+        if (isset($card['power'])) {
+            $saveData->power = $card['power'];
+            $saveData->toughness = $card['toughness'];
+        }
+        /*----------------*/
+        $saveData->layout = $card['layout'];
+
+        //英語版の通しID
+        $enMultiverseId = $card['identifiers']['multiverseId'];
+        $saveData->multiverseid = $enMultiverseId;
+
+        //ImageURlの生成(英語版)
+        $saveData->en_image_url = $this->makeImageUrl($enMultiverseId);
+
+        //PWのみ。忠誠度
+        if (isset($card['loyalty'])) {
+            $saveData->loyalty = $card['loyalty'];
+        }
+
+        //日本語情報セット
+        if (!is_null($japaneseTexts)) {
+            $saveData = $this->setJapaneseTexts($saveData, $japaneseTexts);
+        } else {
+            $saveData->name = '';
+            $saveData->image_url = '';
+            $saveData->jp_multiverseid = '';
+            $saveData->original_text = ''; //今まで英語が入ってしまっていた
+            $saveData->original_type = ''; //今まで英語が入ってしまっていた
+        }
+
+        $saveData->printings = implode(',', $card['printings']); //配列をカンマ区切りに。
+
+        if (isset($card['legalities'])) {
+            //配列形式が異なるので、MTGJSON用のメソッド
+            $saveData = $this->setLegalitiesDataForMtgJson($saveData, $card['legalities']);
+        } else {
+            //発売前では、リーガル情報がない。
+            $saveData = $this->setLegalitiesDataBeforeRelease($saveData);
+        }
+
+        $saveData->api_id = $card['uuid']; //MTGSDKとは値が異なるので注意
+
+        return $saveData;
+    }
+
+    /* ==================== private method =====================  */
+
+    /**
+     * makeImageUrl
+     *
+     * @param integer $multiverseId
+     * @return
+     */
+    private function makeImageUrl($multiverseId)
+    {
+        $baseUrl = 'https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=';
+        $baseQuery = '&type=card';
+
+        $imageURl = $baseUrl . $multiverseId . $baseQuery;
+
+        return $imageURl;
+    }
 
     /**
      * setForeignNamesData
@@ -356,6 +466,34 @@ class CardsTable extends Table
             }
         }
 
+        return $saveData;
+    }
+
+    /**
+     * setJapaneseTexts
+     * MTGJSON用の日本語情報取得メソッド
+     *
+     * @param object $saveData
+     * @param array $japaneseTexts
+     * @return object
+     */
+    private function setJapaneseTexts($saveData, $japaneseTexts)
+    {
+        if (isset($japaneseTexts['name'])) {
+            $saveData->name = $japaneseTexts['name'];
+        }
+        //日本語通しID
+        if (isset($japaneseTexts['multiverseId'])) {
+            $jpMultiverseId = $japaneseTexts['multiverseId'];
+            $saveData->jp_multiverseid = $jpMultiverseId;
+            $saveData->image_url = $this->makeImageUrl($jpMultiverseId);
+        }
+        if (isset($japaneseTexts['text'])) {
+            $saveData->original_text = $japaneseTexts['text'];
+        }
+        if (isset($japaneseTexts['type'])) {
+            $saveData->original_type = $japaneseTexts['type'];
+        }
         return $saveData;
     }
 
@@ -391,6 +529,46 @@ class CardsTable extends Table
                     $saveData->vintage = $boolean;
                     break;
                 case 'Pioneer': //Pioneer
+                    $saveData->pioneer = $boolean;
+                    break;
+            }
+        }
+
+        return $saveData;
+    }
+
+    /**
+     * setLegalitiesDataForMtgJson
+     *
+     * @param object $saveData
+     * @param array $legalitiesArray
+     * @return object
+     */
+    private function setLegalitiesDataForMtgJson($saveData, $legalitiesArray)
+    {
+        foreach ($legalitiesArray as $format => $legal) {
+            if ($legal == 'Legal') {
+                $boolean = true;
+            } else {
+                $boolean = false;
+            }
+            switch ($format){
+                case 'commander': //Commander
+                    $saveData->commander = $boolean;
+                    break;
+                case 'modern': //Modern
+                    $saveData->modern = $boolean;
+                    break;
+                case 'legacy': //Legacy
+                    $saveData->legacy = $boolean;
+                    break;
+                case 'standard': //Standard
+                    $saveData->standard = $boolean;
+                    break;
+                case 'vintage': //Vintage
+                    $saveData->vintage = $boolean;
+                    break;
+                case 'pioneer': //Pioneer
                     $saveData->pioneer = $boolean;
                     break;
             }

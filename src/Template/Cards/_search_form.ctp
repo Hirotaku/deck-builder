@@ -12,14 +12,38 @@ use App\Consts\DeckConsts;
         ]); ?>
     </div>
   </div>
-  <div class="col-lg-12 col-xs-12">
+    <div class="col-lg-6 col-xs-6">
+        <div class="form-group">
+            <label class="fs-small"><?= __('テキスト') ?><span class="warning"><?= __(' - 日本語') ?></span></label>
+            <?= $this->Form->input('original_text', [
+                'type' => 'text', 'class' => 'form-control border-input thin-input', 'label' => false, 'placeholder' => '飛行'
+            ]); ?>
+        </div>
+    </div>
+  <div class="col-lg-6 col-xs-6">
     <div class="form-group">
-      <label class="fs-small"><?= __('テキスト') ?><span class="warning"><?= __('※only English') ?></span></label>
+      <label class="fs-small"><?= __('テキスト') ?><span class="warning"><?= __(' - English') ?></span></label>
         <?= $this->Form->input('text', [
-            'type' => 'text', 'class' => 'form-control border-input thin-input', 'label' => false
+            'type' => 'text', 'class' => 'form-control border-input thin-input', 'label' => false, 'placeholder' => 'Flying'
         ]); ?>
     </div>
   </div>
+    <div class="col-lg-6 col-xs-6">
+        <div class="form-group">
+            <label class="fs-small"><?= __('タイプ') ?><span class="warning"><?= __(' - 日本語') ?></span></label>
+            <?= $this->Form->input('original_type', [
+                'type' => 'text', 'class' => 'form-control border-input thin-input', 'label' => false, 'placeholder' => '人間'
+            ]); ?>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xs-6">
+        <div class="form-group">
+            <label class="fs-small"><?= __('タイプ') ?><span class="warning"><?= __(' - English') ?></span></label>
+            <?= $this->Form->input('type', [
+                'type' => 'text', 'class' => 'form-control border-input thin-input', 'label' => false, 'placeholder' => 'Human'
+            ]); ?>
+        </div>
+    </div>
   <div class="col-lg-12 col-xs-12 search-color">
     <div class="form-group select-multiple">
       <label class="fs-small"><?= __('色') ?></label>

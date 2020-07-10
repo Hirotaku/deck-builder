@@ -167,6 +167,13 @@ body {
   padding-right: 5px;
 }
 
+.label-commander {
+  color: whitesmoke !important;
+  background-color: lightslategray;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 .alert-success {
   margin-bottom: 0px!important;
 }
