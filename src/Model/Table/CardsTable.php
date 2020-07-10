@@ -241,6 +241,18 @@ class CardsTable extends Table
                 'before' => true,
                 'after' => true,
             ])
+            ->like('original_text', [
+                'before' => true,
+                'after' => true,
+            ])
+            ->like('type', [
+                'before' => true,
+                'after' => true,
+            ])
+            ->like('original_type', [
+                'before' => true,
+                'after' => true,
+            ])
             ->value('power')
             ->value('toughness')
             //format
