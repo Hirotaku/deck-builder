@@ -47,6 +47,9 @@ class DecksTable extends Table
         $this->hasMany('DeckCards', [
             'foreignKey' => 'deck_id'
         ]);
+        $this->hasMany('Wants', [
+            'foreignKey' => 'deck_id'
+        ]);
     }
 
     /**

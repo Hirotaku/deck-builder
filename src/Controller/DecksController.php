@@ -14,6 +14,14 @@ use App\Statics\UserInfo;
 class DecksController extends AppController
 {
 
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadModel('Wants');
+
+    }
+
     /**
      * Index method
      *
@@ -107,6 +115,19 @@ class DecksController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $deck = $this->Decks->get($id);
+
+        $wants = $this->Wants->find()
+            ->where(['deck_id' => $id])
+            ->all();
+
+        //WANTSリストも削除
+        foreach ($wants as $want) {
+            if (!$this->Wants->deleteAll($want)) {
+                $this->Flash->error(__('The wants could not be deleted. Please, try again.'));
+            }
+        }
+
+
         if ($this->Decks->delete($deck)) {
             $this->Flash->success(__('The deck has been deleted.'));
         } else {
