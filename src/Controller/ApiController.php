@@ -16,7 +16,7 @@ class ApiController extends AppController
     /**
      * initialize
      *
-     * @author hagiwara
+     * @author hirosawa
      * @return void
      */
     public function initialize()
@@ -28,13 +28,60 @@ class ApiController extends AppController
     /**
      * beforeFilter
      *
-     * @author hagiwara
+     * @author hirosawa
      * @param \Cake\Event\Event $event
      * @return void
      */
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
+    }
+
+    /**
+     * index
+     *
+     * @author hirosawa
+     * @return void
+     */
+    public function index()
+    {
+        if ($this->request->is('post')) {
+    
+            if (!empty($this->request->getData())) {
+
+                $setName = $this->request->getData('set_name');
+                $type = $this->request->getData('type');
+
+                //怖いので保存の場合でIfをかける
+                if ($type == 1) {
+                    $this->redirect(['action' => 'getCardsData', $setName]);
+                } else {
+                    //チェック
+                    $this->redirect(['action' => 'checkCardsData', $setName]);
+                }
+
+            }
+        }
+
+        // セット名の一覧があるMTG Wikiのリンク
+        $setNameList = 'http://mtgwiki.com/wiki/%E3%82%AB%E3%83%BC%E3%83%89%E3%82%BB%E3%83%83%E3%83%88%E4%B8%80%E8%A6%A7';
+        $this->set(compact('setNameList'));
+
+    }
+
+        /**
+     * getCardsData
+     *
+     *
+     */
+    public function checkCardsData($set)
+    {
+        //SDKでデータを取得
+        $cards = mtgsdk\Card::where(['set' => $set])
+            ->all();
+
+        var_dump($cards);exit;
+        
     }
 
     /**
@@ -46,13 +93,12 @@ class ApiController extends AppController
     {
         //SDKでデータを取得
         $cards = mtgsdk\Card::where(['set' => $set])
-//            ->where(['rarity' => 'Mythic Rare'])
             ->all();
-        var_dump($cards);exit;
+        
+
         //データを保存可能な形に成形していく
         $result = true;
         foreach ($cards as $card) {
-//            debug($card);exit;
 
             //日本語限定アートへの対応
             if (!isset($card->multiverseid) && !isset($card->imageUrl)) {

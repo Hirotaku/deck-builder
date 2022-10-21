@@ -40,6 +40,12 @@ use App\Statics\UserInfo;
             </a>
         </li>
         <li>
+            <a href="<?= $this->Url->build(['controller' => 'Api', 'action' => 'index']); ?>">
+                <i class="ti-cloud-down"></i>
+                <p>API CHECK</p>
+            </a>
+        </li>
+        <li>
           <a href="<?= $this->Url->build(['controller' => 'users', 'action' => 'logout']); ?>">
             <i class="ti-hand-open"></i>
             <p>Logout</p>
