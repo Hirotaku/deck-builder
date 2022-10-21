@@ -46,6 +46,10 @@ if ($this->request->action == 'publicList') {
       <?php endif; ?>
   </div>
 </div>
+<?php if ($deck->format ==DeckConsts::FORMAT_COMMANDER ): ?>
+    <h5>- 統率者(<?= $counts['sideboards'] ?>) -</h5>
+    <?= $this->partial('deck_card_list', ['deck' => $deck, 'deckCards' => $general]);?>
+<?php endif; ?>
 <div class="row">
   <div class="col-xs-6">
     <h5 class="h5-subtitle-main">- メイン(<?= $counts['total'] ?>) -</h5>
