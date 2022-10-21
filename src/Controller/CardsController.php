@@ -18,7 +18,7 @@ use Cake\Controller\Component;
 class CardsController extends AppController
 {
     public $paginate = [
-        'limit' => 10
+        'limit' => 12
     ];
 
     /**
