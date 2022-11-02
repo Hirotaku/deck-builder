@@ -2,6 +2,7 @@
 ##########################
 /config/app.php
 /config/.env
+/config/ridgepole/config.yml
 /tmp/*
 /logs/*
 /tmp/*
