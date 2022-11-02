@@ -44,6 +44,9 @@ class DecksTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
         ]);
+        $this->belongsTo('Cards', [
+            'foreignKey' => 'general_card_id'
+        ]);
         $this->hasMany('DeckCards', [
             'foreignKey' => 'deck_id'
         ]);

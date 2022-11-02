@@ -96,7 +96,7 @@ create_table "decks", force: :true do |t|
   t.text   "memo",                        comment:"メモ"
   t.integer   "format",                        comment:"フォーマット"
   t.boolean   "public_flag", default:false,     comment:"公開フラグ"
-
+  t.integer  "general_card_id",                     comment:"統率者カードid"
 
   t.datetime "deleted",                         comment:"削除フラグ"
   t.datetime "created",                         comment:"登録日時"
